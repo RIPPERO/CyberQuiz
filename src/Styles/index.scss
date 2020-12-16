@@ -1,0 +1,22 @@
+@import "./variables.scss";
+
+@mixin font-main($size, $color: $main-white, $padding: $padding-small, $font-weight: 300) {
+    font-size: $size;
+    font-family: "Roboto", sans-serif;
+    padding: $padding;
+    margin: 0;
+    color: $color;
+    font-weight: $font-weight;
+}
+
+.font--small {
+    @include font-main($font-small, $padding: 0)
+}
+
+.font--medium {
+    @include font-main($font-medium, $padding: 0)
+}
+
+.font--big {
+    @include font-main($font-big, $padding: 0)
+}
