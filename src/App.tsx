@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 //Components import
 import Landing from './Components/Landing/Landing';
 import PageNotFound from './Components/PageNotFound/PageNotFound';
+import db from './DB/db';
 
 class App extends Component {
   render() {
@@ -11,7 +12,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Switch>
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={db} />
             <Route exact path="/404" component={PageNotFound} />
             <Route>
               <Redirect to="/404" />
