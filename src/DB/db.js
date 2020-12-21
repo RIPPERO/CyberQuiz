@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 function Test() {
   const [user, setUser] = useState(false);
   useEffect(() => {
@@ -20,7 +20,7 @@ function Test() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({name}),
+      body: JSON.stringify({ name }),
     })
       .then(response => {
         return response.text();
