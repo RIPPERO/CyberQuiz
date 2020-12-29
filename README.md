@@ -10,4 +10,4 @@
 npm install
 npm start
 ```
-### 4. You should see your browser opened automaticly.
+### 4. You should see your browser opened automatically.
