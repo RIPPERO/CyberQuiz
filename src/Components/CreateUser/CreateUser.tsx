@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./CreateUser.scss";
 
 function CreateUser() {
-
+    const history = useHistory();
     const [username, setState] = useState("");
     function handleChange(e: any) {
         setState(e.target.value);
@@ -33,6 +33,8 @@ function CreateUser() {
                 .then(data => {
                     console.log(data);
                 });
+
+            history.push('/quiz')
         }
     }
 
@@ -41,9 +43,7 @@ function CreateUser() {
             <input className="input--main" type="text" name="username" placeholder="Enter Username!" onChange={handleChange} />
 
             <div>
-                <Link to="/quiz">
-                    <button className="button--main" onClick={createUser}>Start!</button>
-                </Link>
+                <button className="button--main" onClick={createUser}>Start!</button>
             </div>
         </div>
     );
