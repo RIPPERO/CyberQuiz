@@ -1,19 +1,13 @@
 const mysql = require('mysql')
-const dotenv = require('dotenv');
-dotenv.config();
-const database_port = process.env.database_port;
+const dotenv = require('dotenv').config({path: __dirname + '../../.env'});
 
 const connection = mysql.createConnection({
-  user: 'root',
-  host: 'localhost',
-  database: 'test',
-  password: '',
-  port: database_port,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
-
-
-console.log(`Your port is ${database_port}`);
-
 
 // Tabela user
 const showUsers = () => {
