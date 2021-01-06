@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 //Components import
 import Landing from './Components/Landing/Landing';
 import PageNotFound from './Components/PageNotFound/PageNotFound';
+import ShowUsers from './Components/ShowUsers/ShowUsers';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/404" component={PageNotFound} />
+            <Route exact path="/users" component={ShowUsers} />
             <Route>
               <Redirect to="/404" />
             </Route>
