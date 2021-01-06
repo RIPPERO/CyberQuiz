@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./ShowUsers.scss";
 
-function Test() {
+function ShowUsers() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ function Test() {
   }, []);
 
   function getUsers() {
-    fetch('http://localhost:3001')
+    fetch('http://localhost:3001/user')
       .then(response => {
         return response.text();
       })
@@ -34,4 +34,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default ShowUsers;

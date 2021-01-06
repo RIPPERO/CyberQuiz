@@ -12,7 +12,7 @@ export default class PageNotFound extends Component {
 
                 <div>
                     <Link to="/">
-                        <button>GO TO LANDING PAGE</button>
+                        <button className="button--main">GO TO LANDING PAGE</button>
                     </Link>
                 </div>
             </div>

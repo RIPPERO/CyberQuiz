@@ -19,7 +19,7 @@ USE `test`;
 
 -- Zrzut struktury tabela test.answer
 CREATE TABLE IF NOT EXISTS `answer` (
-  `answer_ID` int(11) NOT NULL,
+  `answer_ID` int(11) NOT NULL AUTO_INCREMENT,
   `answer` varchar(50) NOT NULL DEFAULT '',
   `is_correct` bit(1) NOT NULL DEFAULT b'0',
   `question_ID_ID` int(11) NOT NULL DEFAULT '0',
@@ -27,9 +27,9 @@ CREATE TABLE IF NOT EXISTS `answer` (
   PRIMARY KEY (`answer_ID`,`question_ID_ID`,`quiz_ID_ID`) USING BTREE,
   KEY `FK__question` (`question_ID_ID`),
   KEY `FK__quiz` (`quiz_ID_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.answer: 1 rows
+-- Zrzucanie danych dla tabeli test.answer: 2 rows
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
 INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
 	(1, 'tak', b'1', 1, 1),
@@ -38,7 +38,7 @@ INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `qu
 
 -- Zrzut struktury tabela test.answer_user
 CREATE TABLE IF NOT EXISTS `answer_user` (
-  `answer_user_ID` int(11) NOT NULL,
+  `answer_user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `user_ID_ID` int(11) NOT NULL,
   `quiz_ID_ID` int(11) NOT NULL,
   `question_ID_ID` int(11) NOT NULL,
@@ -56,13 +56,13 @@ CREATE TABLE IF NOT EXISTS `answer_user` (
 
 -- Zrzut struktury tabela test.question
 CREATE TABLE IF NOT EXISTS `question` (
-  `question_ID` int(11) NOT NULL,
+  `question_ID` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) NOT NULL DEFAULT '',
   `type` int(11) NOT NULL DEFAULT '0',
   `quiz_ID_ID` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`question_ID`,`quiz_ID_ID`) USING BTREE,
   KEY `FK_question_quiz` (`quiz_ID_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Zrzucanie danych dla tabeli test.question: 1 rows
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
@@ -72,11 +72,12 @@ INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
 
 -- Zrzut struktury tabela test.quiz
 CREATE TABLE IF NOT EXISTS `quiz` (
-  `quiz_ID` int(11) NOT NULL,
+  `quiz_ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
   `max_points` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`quiz_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`quiz_ID`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Zrzucanie danych dla tabeli test.quiz: 1 rows
 /*!40000 ALTER TABLE `quiz` DISABLE KEYS */;
@@ -86,7 +87,7 @@ INSERT INTO `quiz` (`quiz_ID`, `name`, `max_points`) VALUES
 
 -- Zrzut struktury tabela test.quiz_user
 CREATE TABLE IF NOT EXISTS `quiz_user` (
-  `quiz_user_ID` int(11) NOT NULL,
+  `quiz_user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `final_score` int(11) NOT NULL,
   `date` date NOT NULL,
   `quiz_ID_ID` int(11) NOT NULL DEFAULT '0',
@@ -102,15 +103,18 @@ CREATE TABLE IF NOT EXISTS `quiz_user` (
 
 -- Zrzut struktury tabela test.user
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_ID` int(11) NOT NULL,
+  `user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`user_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`user_ID`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.user: 0 rows
+-- Zrzucanie danych dla tabeli test.user: 3 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`user_ID`, `username`) VALUES
-	(1, 'adrian');
+	(1, 'adrian'),
+	(2, 'adam'),
+	(3, 'jarek');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
