@@ -13,11 +13,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Zrzut struktury bazy danych test
-CREATE DATABASE IF NOT EXISTS `test` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `test`;
+-- Zrzut struktury bazy danych cyberquiz
+CREATE DATABASE IF NOT EXISTS `cyberquiz` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `cyberquiz`;
 
--- Zrzut struktury tabela test.answer
+-- Zrzut struktury tabela cyberquiz.answer
 CREATE TABLE IF NOT EXISTS `answer` (
   `answer_ID` int(11) NOT NULL AUTO_INCREMENT,
   `answer` varchar(50) NOT NULL DEFAULT '',
@@ -29,14 +29,14 @@ CREATE TABLE IF NOT EXISTS `answer` (
   KEY `FK__quiz` (`quiz_ID_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.answer: 2 rows
+-- Zrzucanie danych dla tabeli cyberquiz.answer: 2 rows
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
 INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
 	(1, 'tak', b'1', 1, 1),
 	(2, 'nie', b'0', 1, 1);
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 
--- Zrzut struktury tabela test.answer_user
+-- Zrzut struktury tabela cyberquiz.answer_user
 CREATE TABLE IF NOT EXISTS `answer_user` (
   `answer_user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `user_ID_ID` int(11) NOT NULL,
@@ -50,11 +50,11 @@ CREATE TABLE IF NOT EXISTS `answer_user` (
   KEY `FK__answer` (`answer_ID_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.answer_user: 0 rows
+-- Zrzucanie danych dla tabeli cyberquiz.answer_user: 0 rows
 /*!40000 ALTER TABLE `answer_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `answer_user` ENABLE KEYS */;
 
--- Zrzut struktury tabela test.question
+-- Zrzut struktury tabela cyberquiz.question
 CREATE TABLE IF NOT EXISTS `question` (
   `question_ID` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(50) NOT NULL DEFAULT '',
@@ -64,13 +64,13 @@ CREATE TABLE IF NOT EXISTS `question` (
   KEY `FK_question_quiz` (`quiz_ID_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.question: 1 rows
+-- Zrzucanie danych dla tabeli cyberquiz.question: 1 rows
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
 	(1, 'czy ptak ma kota?', 1, 1);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 
--- Zrzut struktury tabela test.quiz
+-- Zrzut struktury tabela cyberquiz.quiz
 CREATE TABLE IF NOT EXISTS `quiz` (
   `quiz_ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
@@ -79,13 +79,13 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.quiz: 1 rows
+-- Zrzucanie danych dla tabeli cyberquiz.quiz: 1 rows
 /*!40000 ALTER TABLE `quiz` DISABLE KEYS */;
 INSERT INTO `quiz` (`quiz_ID`, `name`, `max_points`) VALUES
 	(1, 'pierwszy quiz', 20);
 /*!40000 ALTER TABLE `quiz` ENABLE KEYS */;
 
--- Zrzut struktury tabela test.quiz_user
+-- Zrzut struktury tabela cyberquiz.quiz_user
 CREATE TABLE IF NOT EXISTS `quiz_user` (
   `quiz_user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `final_score` int(11) NOT NULL,
@@ -97,19 +97,19 @@ CREATE TABLE IF NOT EXISTS `quiz_user` (
   KEY `FK__user` (`user_ID_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.quiz_user: 0 rows
+-- Zrzucanie danych dla tabeli cyberquiz.quiz_user: 0 rows
 /*!40000 ALTER TABLE `quiz_user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `quiz_user` ENABLE KEYS */;
 
--- Zrzut struktury tabela test.user
+-- Zrzut struktury tabela cyberquiz.user
 CREATE TABLE IF NOT EXISTS `user` (
   `user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`user_ID`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli test.user: 3 rows
+-- Zrzucanie danych dla tabeli cyberquiz.user: 3 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`user_ID`, `username`) VALUES
 	(1, 'adrian'),

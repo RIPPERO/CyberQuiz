@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const dotenv = require('dotenv').config({path: __dirname + '../../.env'});
+const dotenv = require('dotenv').config({path: __dirname + '../../../.env'});
 
 const connection = mysql.createConnection({
   user: process.env.DB_USER,
