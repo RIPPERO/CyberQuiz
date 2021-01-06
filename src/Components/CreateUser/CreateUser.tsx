@@ -15,9 +15,6 @@ function CreateUser() {
         if (name === "") {
             alert("Username cannot be blank!");
         }
-        // else if ( ) {
-        //     alert(`Username ${name} already exists. Choose a different one!`);
-        // }
         else {
             fetch('http://localhost:3001/user/post', {
                 method: 'POST',
@@ -31,10 +28,15 @@ function CreateUser() {
                 })
 
                 .then(data => {
-                    console.log(data);
+                    if (data === `Username ${name} already exists. Choose a different one!`){
+                        alert(`Username ${name} already exists. Choose a different one!`);
+                        // can be better error handling
+                    }
+                    else {
+                        // console.log(data);
+                        history.push('/quiz')
+                    }
                 });
-
-            history.push('/quiz')
         }
     }
 
