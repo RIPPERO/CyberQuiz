@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import "./CreateUser.scss";
 
 function CreateUser() {
@@ -44,7 +45,9 @@ function CreateUser() {
             <input className="input--main" type="text" name="username" placeholder="Enter Username!" onChange={handleChange} />
 
             <div>
-                <button className="button--main" onClick={createUser}>Add!</button>
+                <Link to="/quiz">
+                    <button className="button--main" onClick={createUser}>Add!</button>
+                </Link>
             </div>
         </div>
     );
