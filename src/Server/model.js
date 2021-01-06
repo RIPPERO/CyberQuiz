@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   port: 3306,
 });
 
-const getUsers = () => {
+const showUsers = () => {
   return new Promise(function(resolve) {
     connection.query('SELECT * FROM user', function (error, results) {
       if (error) throw error;
@@ -17,5 +17,5 @@ const getUsers = () => {
 }
 
 module.exports = {
-  getUsers,
+  showUsers,
 }

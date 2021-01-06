@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3001
 
-const user_model = require('./user_model')
+const model = require('./model')
 
 app.use(express.json())
 app.use(function (req, res, next) {
@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', (req, res) => {
-  user_model.getUsers()
+  model.showUsers()
   .then(response => {
     res.status(200).send(response);
   })

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./ShowUsers.scss";
 
 function Test() {
   const [user, setUser] = useState([]);
@@ -14,7 +15,7 @@ function Test() {
       })
       .then(data => {
         let obj = JSON.parse(data);
-        let wynik = [];
+        let wynik:any = [];
 
         for (let i = 0; i < obj.length; i++) {
           wynik[i] = obj[i].username;
