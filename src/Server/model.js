@@ -1,12 +1,21 @@
 const mysql = require('mysql')
+const dotenv = require('dotenv');
+dotenv.config();
+const database_port = process.env.database_port;
+
 const connection = mysql.createConnection({
   user: 'root',
   host: 'localhost',
   database: 'test',
   password: '',
-  port: 3306,
+  port: database_port,
 });
 
+
+console.log(`Your port is ${database_port}`);
+
+
+// Tabela user
 const showUsers = () => {
   return new Promise(function(resolve) {
     connection.query('SELECT * FROM user', function (error, results) {

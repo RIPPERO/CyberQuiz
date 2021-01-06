@@ -12,7 +12,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', (req, res) => {
+// Tabela user
+app.get('/user', (req, res) => {
   model.showUsers()
   .then(response => {
     res.status(200).send(response);
@@ -22,7 +23,7 @@ app.get('/', (req, res) => {
   })
 })
 
-app.post('/user', (req, res) => {
+app.post('/user/post', (req, res) => {
   model.createUser(req.body)
   .then(response => {
     res.status(200).send(response);

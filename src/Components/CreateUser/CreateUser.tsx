@@ -18,7 +18,7 @@ function CreateUser() {
         //     alert(`Username ${name} already exists. Choose a different one!`);
         // }
         else {
-            fetch('http://localhost:3001/user', {
+            fetch('http://localhost:3001/user/post', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

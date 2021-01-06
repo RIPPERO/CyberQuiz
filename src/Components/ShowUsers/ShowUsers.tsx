@@ -9,7 +9,7 @@ function ShowUsers() {
   }, []);
 
   function getUsers() {
-    fetch('http://localhost:3001')
+    fetch('http://localhost:3001/user')
       .then(response => {
         return response.text();
       })
