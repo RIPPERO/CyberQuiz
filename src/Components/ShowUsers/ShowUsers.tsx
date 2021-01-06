@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./ShowUsers.scss";
 
-function Test() {
+function ShowUsers() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -34,4 +34,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default ShowUsers;
