@@ -38,15 +38,11 @@ function CreateUser() {
 
     return (
         <div className="create-user-container">
-            <span className="font--big">
-                Add user!
-            </span>
-
             <input className="input--main" type="text" name="username" placeholder="Enter Username!" onChange={handleChange} />
 
             <div>
                 <Link to="/quiz">
-                    <button className="button--main" onClick={createUser}>Add!</button>
+                    <button className="button--main" onClick={createUser}>Start!</button>
                 </Link>
             </div>
         </div>
