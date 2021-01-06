@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 //Components import
-import Landing from './Components/Landing/Landing';
+// import Landing from './Components/Landing/Landing';
 import PageNotFound from './Components/PageNotFound/PageNotFound';
 import db from './DB/db';
 

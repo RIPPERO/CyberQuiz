@@ -22,25 +22,6 @@ app.get('/', (req, res) => {
   })
 })
 
-app.post('/user', (req, res) => {
-  user_model.createUser(req.body)
-  .then(response => {
-    res.status(200).send(response);
-  })
-  .catch(error => {
-    res.status(500).send(error);
-  })
-})
-
-app.delete('/user/:id', (req, res) => {
-  user_model.deleteUser(req.params.id)
-  .then(response => {
-    res.status(200).send(response);
-  })
-  .catch(error => {
-    res.status(500).send(error);
-  })
-})
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
