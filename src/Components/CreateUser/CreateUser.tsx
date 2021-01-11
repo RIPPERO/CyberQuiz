@@ -28,12 +28,17 @@ function CreateUser() {
                 })
 
                 .then(data => {
-                    if (data === `Username ${name} already exists. Choose a different one!`){
+                    if (data === `Username ${name} already exists. Choose a different one!`) {
                         alert(`Username ${name} already exists. Choose a different one!`);
+                        // can be better error handling
+                    }
+                    else if (data === "Bad database name!") {
+                        alert("Bad database name!");
                         // can be better error handling
                     }
                     else {
                         // console.log(data);
+                        alert(`Username ${name} added!`)
                         history.push('/quiz')
                     }
                 });
