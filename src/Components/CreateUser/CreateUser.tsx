@@ -5,12 +5,13 @@ import "./CreateUser.scss";
 function CreateUser() {
     const history = useHistory();
     const [username, setState] = useState("");
+    
     function handleChange(e: any) {
         setState(e.target.value);
     }
 
     function createUser() {
-        let name = username;
+        let name = username.toUpperCase();
 
         if (name === "") {
             alert("Username cannot be blank!");
@@ -28,16 +29,20 @@ function CreateUser() {
                 })
 
                 .then(data => {
-                    if (data === `Username ${name} already exists. Choose a different one!`) {
-                        alert(`Username ${name} already exists. Choose a different one!`);
-                        // can be better error handling
+                    try {
+                        let obj = JSON.parse(data);
+                        if (obj.code === "ER_DUP_ENTRY") {
+                            alert(`Username ${name} already exists. Choose a different one!`);
+                        }
+                        else if (obj.code === "ER_BAD_DB_ERROR") {
+                            alert("Bad database name!");
+                        }
+                        else {
+                            alert("Other error!\n" + obj.code);
+                        }
                     }
-                    else if (data === "Bad database name!") {
-                        alert("Bad database name!");
-                        // can be better error handling
-                    }
-                    else {
-                        // console.log(data);
+
+                    catch (e) {
                         alert(`Username ${name} added!`)
                         history.push('/quiz')
                     }
@@ -47,7 +52,7 @@ function CreateUser() {
 
     return (
         <div className="create-user-container">
-            <input className="input--main" type="text" name="username" placeholder="Enter Username!" onChange={handleChange} />
+            <input className="input--main upper" type="text" name="username" placeholder="Enter Username!" onChange={handleChange} />
 
             <div>
                 <button className="button--main" onClick={createUser}>Start!</button>

@@ -13,7 +13,9 @@ const connection = mysql.createConnection({
 const showUsers = () => {
   return new Promise(function (resolve) {
     connection.query('SELECT * FROM user', function (error, results) {
-      if (error) throw error;
+      if (error) {
+        resolve(error);
+      }
       resolve(results);
     });
   })
@@ -30,14 +32,15 @@ const createUser = (body) => {
       if (err) {
         if (err.code === "ER_DUP_ENTRY") {
           console.log(`Username ${values} already exists. Choose a different one!`);
-          resolve(`Username ${values} already exists. Choose a different one!`);
+          resolve(err);
         }
         else if (err.code === "ER_BAD_DB_ERROR") {
           console.log(`Bad database name!`);
-          resolve("Bad database name!");
+          resolve(err);
         }
         else {
-          throw err;
+          console.log("Other error!\n" + err);
+          resolve(err);
         }
       }
       else {
