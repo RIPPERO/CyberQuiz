@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysql = require('mysql');
 const dotenv = require('dotenv').config({ path: __dirname + '../../../.env' });
 
 const connection = mysql.createConnection({
@@ -12,7 +12,8 @@ const connection = mysql.createConnection({
 // Tabela user
 const showUsers = () => {
   return new Promise(function (resolve) {
-    connection.query('SELECT * FROM user', function (err, results) {
+    var sql = "SELECT * FROM user"
+    connection.query(sql, function (err, results) {
       if (err) {
         console.log(err.code + "\n" + err.sqlMessage);
         resolve(err);
@@ -21,13 +22,12 @@ const showUsers = () => {
         resolve(results);
       }
     });
-  })
+  });
 }
 
 const createUser = (body) => {
   return new Promise(function (resolve) {
     const username = body.name;
-
     var sql = "INSERT INTO user (username) VALUES (?)";
     var values = username;
 
