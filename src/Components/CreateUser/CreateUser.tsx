@@ -4,10 +4,10 @@ import "./CreateUser.scss";
 
 function CreateUser() {
     const history = useHistory();
-    const [username, setState] = useState("");
+    const [username, setUsername] = useState("");
     
     function handleChange(e: any) {
-        setState(e.target.value);
+        setUsername(e.target.value);
     }
 
     function createUser() {
@@ -15,6 +15,9 @@ function CreateUser() {
 
         if (name === "") {
             alert("Username cannot be blank!");
+        }
+        else if (name.length < 3) {
+            alert("Username cannot be shorter than 3 characters!");
         }
         else {
             fetch('http://localhost:3001/user/post', {

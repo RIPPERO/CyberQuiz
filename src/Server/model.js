@@ -12,11 +12,14 @@ const connection = mysql.createConnection({
 // Tabela user
 const showUsers = () => {
   return new Promise(function (resolve) {
-    connection.query('SELECT * FROM user', function (error, results) {
-      if (error) {
-        resolve(error);
+    connection.query('SELECT * FROM user', function (err, results) {
+      if (err) {
+        console.log(err.code + "\n" + err.sqlMessage);
+        resolve(err);
       }
-      resolve(results);
+      else {
+        resolve(results);
+      }
     });
   })
 }
@@ -47,7 +50,6 @@ const createUser = (body) => {
         console.log(`A new user has been added: ${values}`);
         resolve(`A new user has been added: ${values}`);
       }
-
     });
   });
 }
