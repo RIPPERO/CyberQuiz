@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import store from '../../AppStore/store';
 import "./CreateUser.scss";
 
 function CreateUser() {
@@ -46,6 +47,10 @@ function CreateUser() {
                     }
 
                     catch (e) {
+                        store.dispatch({
+                            type: "SET_USERNAME"
+                        })
+
                         alert(`Username ${name} added!`)
                         history.push('/quiz')
                     }
