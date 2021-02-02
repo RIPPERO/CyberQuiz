@@ -10,7 +10,6 @@ interface security {
 
 class Quiz extends Component<security> {
     render() {
-        console.log(this.props.usernameSet);
         if (this.props.usernameSet) {
             return (
                 <div className="quiz-container">

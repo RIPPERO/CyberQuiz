@@ -6,8 +6,8 @@ import "./CreateUser.scss";
 function CreateUser() {
     const history = useHistory();
     const [username, setUsername] = useState("");
-    
-    function handleChange(e: any) {
+
+    function handleChange(e) {
         setUsername(e.target.value);
     }
 
@@ -33,7 +33,26 @@ function CreateUser() {
                 })
 
                 .then(data => {
-                    try {
+                    function IsJson(data){
+                        try {
+                            JSON.parse(data);
+                        }
+                        catch(e) {
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    if (IsJson(data) === false) {
+                        store.dispatch({
+                            type: "SET_USERNAME"
+                        })
+
+                        alert(`Username ${name} added!`);
+                        history.push('/quiz');
+                    }
+
+                    else {
                         let obj = JSON.parse(data);
                         if (obj.code === "ER_DUP_ENTRY") {
                             alert(`Username ${name} already exists. Choose a different one!`);
@@ -44,15 +63,6 @@ function CreateUser() {
                         else {
                             alert("Other error!\n" + obj.code);
                         }
-                    }
-
-                    catch (e) {
-                        store.dispatch({
-                            type: "SET_USERNAME"
-                        })
-
-                        alert(`Username ${name} added!`)
-                        history.push('/quiz')
                     }
                 });
         }
