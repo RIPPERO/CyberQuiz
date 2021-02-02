@@ -1,6 +1,6 @@
 @import "../../Styles/variables.scss";
 
-.create-user-container {
+.notUsernameSet-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,8 +8,4 @@
     width: 100%;
     height: 100vh;
     background-color: $main-blue-dark;
-}
-
-.upper {
-    text-transform: uppercase;
 }

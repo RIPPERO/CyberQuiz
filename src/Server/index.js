@@ -1,10 +1,9 @@
-const express = require('express')
-const app = express()
-const port = 3001
+const express = require('express');
+const model = require('./model');
+const app = express();
+const port = 3001;
 
-const model = require('./model')
-
-app.use(express.json())
+app.use(express.json());
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
@@ -21,7 +20,7 @@ app.get('/user', (req, res) => {
   .catch(error => {
     res.status(500).send(error);
   })
-})
+});
 
 app.post('/user/post', (req, res) => {
   model.createUser(req.body)
@@ -31,8 +30,8 @@ app.post('/user/post', (req, res) => {
   .catch(error => {
     res.status(500).send(error);
   })
-})
+});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
-})
+});

@@ -1,12 +1,16 @@
 @import "../../Styles/variables.scss";
 
 .username {
-    font-size: 20px;
-    margin: 10px;
+    font-size: $font-small;
+    text-align: center;
     text-transform: uppercase;
 }
 
-.test1234 {
+.d-flex-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+table {
+    table-layout: fixed;
 }
