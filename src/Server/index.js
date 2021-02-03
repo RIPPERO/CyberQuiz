@@ -43,6 +43,28 @@ app.get('/quiz', (req, res) => {
   })
 });
 
+// Tabela Question
+app.post('/question', (req, res) => {
+  model.selectQuiz(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
+// Tabela answers
+app.post('/answers', (req, res) => {
+  model.showAnswers(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 });

@@ -7,7 +7,6 @@ import "./CreateUser.scss";
 function CreateUser(props) {
     const history = useHistory();
     const [username, setUsername] = useState("");
-    const API = `${props.apiUrl}user/post`;
 
     function handleChange(e) {
         setUsername(e.target.value);
@@ -15,6 +14,7 @@ function CreateUser(props) {
 
     function createUser() {
         let name = username.toUpperCase();
+        const API = `${props.apiUrl}user/post`;
 
         if (name === "") {
             alert("Username cannot be blank!");

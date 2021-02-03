@@ -12,6 +12,7 @@ import CreateUser from './Components/CreateUser/CreateUser';
 import Quiz from './Components/Quiz/Quiz';
 import ShowUsers from './Components/ShowUsers/ShowUsers';
 import PageNotFound from './Components/PageNotFound/PageNotFound';
+import Questions from './Components/Questions/Questions';
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <Route exact path="/createuser" component={CreateUser} />
               <Route exact path="/quiz" component={Quiz} />
+              <Route exact path="/questions" component={Questions} />
               <Route exact path="/users" component={ShowUsers} />
 
               <Route exact path="/404" component={PageNotFound} />

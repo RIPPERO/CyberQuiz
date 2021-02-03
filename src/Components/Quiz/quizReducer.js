@@ -1,13 +1,13 @@
 const initialState = {
-    usernameSet: false,
+    quiz_ID: 0,
 }
 
-export default function usernameReducer (state = initialState, action) {
+export default function quizReducer (state = initialState, action) {
     switch (action.type) {
-        case "SET_USERNAME":
+        case "SET_QUIZ_ID":
             return {
                 ...state,
-                usernameSet: true,
+                quiz_ID: action.payload.quiz_ID,
             };
 
         default:

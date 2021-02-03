@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { Redirect } from 'react-router';
+import store from '../../AppStore/store';
 // import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
-// import { Link } from "react-router-dom";
 import "./Quiz.scss";
 
 interface security {
@@ -11,17 +12,19 @@ interface security {
 
 interface displayQuiz {
     data: any[],
+    redirect: boolean,
 }
 
 class Quiz extends Component<security> {
-    API = `${this.props.apiUrl}quiz`;
 
     state: displayQuiz = {
         data: [],
+        redirect: false,
     }
 
     componentDidMount() {
-        fetch(this.API)
+        const API = `${this.props.apiUrl}quiz`;
+        fetch(API)
             .then((response) => response.json())
             .then(data => {
                 this.setState({
@@ -31,7 +34,27 @@ class Quiz extends Component<security> {
     }
 
     chooseQuiz(quiz_ID) {
-        console.log(quiz_ID);
+        let quiz_ID_ID = quiz_ID;
+
+        store.dispatch({
+            type: "SET_QUIZ_ID",
+            payload: {
+                quiz_ID: quiz_ID_ID,
+            },
+        })
+        this.setRedirect();
+    }
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true,
+        })
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/questions' />
+        }
     }
 
     render() {
@@ -39,6 +62,7 @@ class Quiz extends Component<security> {
         return (
             <div className="quiz-container">
                 <p className="font--big">Select a Quiz!</p>
+                {this.renderRedirect()}
 
                 <div className="scroll">
                     <div className="titleContainer">

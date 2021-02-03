@@ -70,8 +70,48 @@ const showQuiz = () => {
   });
 }
 
+// Tabela Question
+const selectQuiz = (body) => {
+  return new Promise(function (resolve) {
+    const id = body.quiz_ID_ID;
+    var sql = "SELECT * FROM question WHERE quiz_ID_ID = ?"
+    var values = id;
+
+    connection.query(sql, values, function (err, results) {
+      if (err) {
+        console.log(err.code + "\n" + err.sqlMessage);
+        resolve(err);
+      }
+      else {
+        resolve(results);
+      }
+    });
+  });
+}
+
+// Tabela answer
+const showAnswers = (body) => {
+  return new Promise(function (resolve) {
+    const id = body.questionID;
+    var sql = "SELECT answer_ID, answer FROM answer WHERE question_ID_ID = ?"
+    var values = id;
+
+    connection.query(sql, values, function (err, results) {
+      if (err) {
+        console.log(err.code + "\n" + err.sqlMessage);
+        resolve(err);
+      }
+      else {
+        resolve(results);
+      }
+    });
+  });
+}
+
 module.exports = {
   showUsers,
   createUser,
   showQuiz,
+  selectQuiz,
+  showAnswers,
 }
