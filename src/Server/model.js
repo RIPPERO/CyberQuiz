@@ -12,7 +12,8 @@ const connection = mysql.createConnection({
 // Tabela user
 const showUsers = () => {
   return new Promise(function (resolve) {
-    var sql = "SELECT * FROM user"
+    var sql = "SELECT * FROM user";
+    
     connection.query(sql, function (err, results) {
       if (err) {
         console.log(err.code + "\n" + err.sqlMessage);
@@ -57,7 +58,8 @@ const createUser = (body) => {
 // Tabela Quiz
 const showQuiz = () => {
   return new Promise(function (resolve) {
-    var sql = "SELECT * FROM quiz"
+    var sql = "SELECT * FROM quiz";
+
     connection.query(sql, function (err, results) {
       if (err) {
         console.log(err.code + "\n" + err.sqlMessage);
@@ -74,7 +76,7 @@ const showQuiz = () => {
 const selectQuiz = (body) => {
   return new Promise(function (resolve) {
     const id = body.quiz_ID_ID;
-    var sql = "SELECT * FROM question WHERE quiz_ID_ID = ?"
+    var sql = "SELECT * FROM question WHERE quiz_ID_ID = ?";
     var values = id;
 
     connection.query(sql, values, function (err, results) {
@@ -93,7 +95,7 @@ const selectQuiz = (body) => {
 const showAnswers = (body) => {
   return new Promise(function (resolve) {
     const id = body.questionID;
-    var sql = "SELECT answer_ID, answer FROM answer WHERE question_ID_ID = ?"
+    var sql = "SELECT answer_ID, answer FROM answer WHERE question_ID_ID = ?";
     var values = id;
 
     connection.query(sql, values, function (err, results) {
