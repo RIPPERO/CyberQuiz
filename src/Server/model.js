@@ -54,7 +54,24 @@ const createUser = (body) => {
   });
 }
 
+// Tabela Quiz
+const showQuiz = () => {
+  return new Promise(function (resolve) {
+    var sql = "SELECT * FROM quiz"
+    connection.query(sql, function (err, results) {
+      if (err) {
+        console.log(err.code + "\n" + err.sqlMessage);
+        resolve(err);
+      }
+      else {
+        resolve(results);
+      }
+    });
+  });
+}
+
 module.exports = {
   showUsers,
   createUser,
+  showQuiz,
 }

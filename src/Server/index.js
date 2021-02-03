@@ -32,6 +32,17 @@ app.post('/user/post', (req, res) => {
   })
 });
 
+// Tabela Quiz
+app.get('/quiz', (req, res) => {
+  model.showQuiz()
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 });

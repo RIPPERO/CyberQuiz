@@ -11,20 +11,24 @@
 }
 
 .font--small {
-    @include font-main($font-small, $padding: 0)
+    @include font-main($font-small, $padding: 0);
 }
 
 .font--medium {
-    @include font-main($font-medium, $padding: 0)
+    @include font-main($font-medium, $padding: 0);
+}
+
+.font--medium--bold {
+    @include font-main($font-medium, $color: $main-white, $padding: 0, $font-weight: 500);
 }
 
 .font--big {
-    @include font-main($font-big, $padding: 0)
+    @include font-main($font-big, $padding: 0);
 }
 
 // INPUT
 .input--main {
-    @include font-main($font-small, $main-white , $padding-small, 300);
+    @include font-main($font-small, $main-white, $padding-small, 300);
     border: 2px solid $main-blue-light;
     background: none;
     border-radius: 40px;
@@ -53,4 +57,28 @@
         cursor: pointer;
         transform: scale($scale);
     }
+}
+
+.hr--main {
+    border: 1px solid #969696;
+    background-color: #969696;
+    margin: 0;
+}
+
+.scroll {
+    overflow-y: auto;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 32px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: $main-gray-light;
+    border-radius: 32px;
 }

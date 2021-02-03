@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import store from '../../AppStore/store';
 import "./CreateUser.scss";
 
-function CreateUser() {
+function CreateUser(props) {
     const history = useHistory();
     const [username, setUsername] = useState("");
+    const API = `${props.apiUrl}user/post`;
 
     function handleChange(e) {
         setUsername(e.target.value);
@@ -17,11 +19,11 @@ function CreateUser() {
         if (name === "") {
             alert("Username cannot be blank!");
         }
-        else if (name.length < 3) {
-            alert("Username cannot be shorter than 3 characters!");
+        else if (name.length < 3 || name.length > 10) {
+            alert("Username cannot be shorter than 3 and longer than 10 characters!");
         }
         else {
-            fetch('http://localhost:3001/user/post', {
+            fetch(API, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,4 +81,10 @@ function CreateUser() {
     );
 }
 
-export default CreateUser;
+const mapStateToProps = (state) => {
+    return {
+        apiUrl: state.api.apiUrl,
+    }
+}
+
+export default connect(mapStateToProps)(CreateUser);
