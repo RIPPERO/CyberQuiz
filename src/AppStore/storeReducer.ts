@@ -9,6 +9,6 @@ import questionsReducer from "../Components/Questions/questionsReducer"
 export default combineReducers({
    security: usernameReducer,
    quiz: quizReducer, 
-   questionNumber: questionsReducer,
+   question: questionsReducer,
    api: apiRecuder,
 });

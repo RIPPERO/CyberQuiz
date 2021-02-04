@@ -112,8 +112,8 @@ const showAnswers = (body) => {
 
 const checkAnswer = (body) => {
   return new Promise(function (resolve) {
-    const id = body.questionIDID;
-    var sql = "SELECT answer_ID, is_correct FROM answer WHERE question_ID_ID = ?";
+    const id = body.answerID;
+    var sql = "SELECT is_correct FROM answer WHERE answer_ID = ?";
     var values = id;
 
     connection.query(sql, values, function (err, results) {
@@ -122,7 +122,6 @@ const checkAnswer = (body) => {
         resolve(err);
       }
       else {
-        console.log(results);
         resolve(results);
       }
     });
