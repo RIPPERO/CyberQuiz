@@ -115,6 +115,19 @@ class Questions extends Component<security> {
                 }
                 else {
                     console.log("błędna odp");
+                    if (this.state.questionArray.length === this.props.questionNumber + 1) {
+                        console.log("koniec pytań");
+                    }
+                    else {
+                        store.dispatch({
+                            type: "INCREASE_QUESTION_NUMBER",
+                            payload: {
+                                questionNumber: this.props.questionNumber + 1,
+                            }
+                        })
+                    }
+
+                    this.setRedirect();
                 }
             })
     }
