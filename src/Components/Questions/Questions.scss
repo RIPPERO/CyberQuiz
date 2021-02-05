@@ -3,9 +3,33 @@
 .questions-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
     background-color: $main-blue-dark;
+}
+
+.questionAnswers {
+    margin: auto;
+}
+
+.questionText {
+    text-align: center;
+    background-color: $main-blue-light;
+    padding: $padding-small;
+}
+
+.answers {
+    margin-top: 20px;
+}
+
+.answerRow {
+    padding: $padding-small 0;
+    transition: 0.2s;
+    text-align: center;
+
+    &:hover {
+        background-color: $main-blue-light;
+        cursor: pointer;
+    }
 }

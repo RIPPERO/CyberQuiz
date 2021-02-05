@@ -7,7 +7,7 @@ export default class Landing extends Component {
         return (
             <div className="landing-container">
                 <div className="margin">
-                    <span className="font--big">CyberQuiz</span>
+                    <span className="font--big">Cyber Quiz</span>
                 </div>
 
                 <div>

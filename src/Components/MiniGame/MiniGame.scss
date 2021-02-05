@@ -3,9 +3,33 @@
 .minigame-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
     background-color: $main-blue-dark;
+}
+
+.minigameDiv {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rules {
+    text-align: center;
+    margin: 10px 0;
+    transition: 0.2s;
+}
+
+.h-0 {
+    height: 0;
+    visibility: hidden;
+    transition: 0.2s;
+}
+
+.h-1 {
+    visibility: visible;
+    transition: 0.2s;
+    height: 100px;
 }

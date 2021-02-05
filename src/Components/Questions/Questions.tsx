@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import store from '../../AppStore/store';
+import Header from '../Header/Header';
 // import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./Questions.scss";
 
@@ -71,6 +72,13 @@ class Questions extends Component<security> {
                         })
                     })
             })
+
+        store.dispatch({
+            type: "SET_HEADER",
+            payload: {
+                headerText: "Answer a Question!",
+            },
+        })
     }
 
     chooseAnswer(answerID) {
@@ -147,21 +155,25 @@ class Questions extends Component<security> {
     render() {
         return (
             <div className="questions-container">
-                <p className="font--big">Answer a Question!</p>
-                <p className="font--small"> {this.state.question} </p>
-                <p className="font--small"> Score: {this.props.score} </p>
-
                 {this.renderRedirect()}
+                <Header />
 
-                {this.state.answersArray.map((answers) => {
-                    return (
-                        <div className="quizContainer" onClick={() => this.chooseAnswer(answers.answer_ID)} key={answers.answer_ID}>
-                            <div className="quizContainerRow">
-                                <p className="font--small"> {answers.answer} </p>
-                            </div>
-                        </div>
-                    )
-                })}
+                <div className="questionAnswers">
+                    <div className="questionText">
+                        <p className="font--medium">{this.state.question}</p>
+                        <p className="font--small">Score: {this.props.score}</p>
+                    </div>
+
+                    <div className="answers">
+                        {this.state.answersArray.map((answers) => {
+                            return (
+                                <div className="answerRow" onClick={() => this.chooseAnswer(answers.answer_ID)} key={answers.answer_ID}>
+                                    <p className="font--small">{answers.answer}</p>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
         )
     }

@@ -3,7 +3,6 @@
 .create-user-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
@@ -12,4 +11,11 @@
 
 .upper {
     text-transform: uppercase;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
 }

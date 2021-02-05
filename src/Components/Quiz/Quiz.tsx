@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import store from '../../AppStore/store';
+import Header from '../Header/Header';
 // import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./Quiz.scss";
 
@@ -31,6 +32,13 @@ class Quiz extends Component<security> {
                     data: data,
                 });
             });
+
+        store.dispatch({
+            type: "SET_HEADER",
+            payload: {
+                headerText: "Select a quiz!",
+            },
+        })
     }
 
     chooseQuiz(quiz_ID) {
@@ -61,10 +69,10 @@ class Quiz extends Component<security> {
         // if (this.props.usernameSet) {
         return (
             <div className="quiz-container">
-                <p className="font--big">Select a Quiz!</p>
+                <Header />
                 {this.renderRedirect()}
 
-                <div className="scroll">
+                <div className="quizList scroll">
                     <div className="titleContainer">
                         <div className="titleContainer--item">
                             <p className="font--medium--bold">Number</p>
@@ -96,10 +104,7 @@ class Quiz extends Component<security> {
                             </div>
                         )
                     })}
-
                 </div>
-
-
             </div>
         )
     }

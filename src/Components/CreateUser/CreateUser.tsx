@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import store from '../../AppStore/store';
 import "./CreateUser.scss";
+
+import Header from "../Header/Header";
 
 function CreateUser(props) {
     const history = useHistory();
@@ -10,6 +12,19 @@ function CreateUser(props) {
 
     function handleChange(e) {
         setUsername(e.target.value);
+    }
+
+    useEffect(() => {
+        setHeaderText();
+    }, []);
+
+    function setHeaderText() {
+        store.dispatch({
+            type: "SET_HEADER",
+            payload: {
+                headerText: "Enter a username!",
+            },
+        })
     }
 
     function createUser() {
@@ -35,11 +50,11 @@ function CreateUser(props) {
                 })
 
                 .then(data => {
-                    function IsJson(data){
+                    function IsJson(data) {
                         try {
                             JSON.parse(data);
                         }
-                        catch(e) {
+                        catch (e) {
                             return false;
                         }
                         return true;
@@ -72,9 +87,10 @@ function CreateUser(props) {
 
     return (
         <div className="create-user-container">
-            <input className="input--main upper" type="text" name="username" placeholder="Enter Username!" onChange={handleChange} />
+            <Header />
 
-            <div>
+            <div className="inputContainer">
+                <input className="input--main upper" type="text" name="username" placeholder="username" onChange={handleChange} />
                 <button className="button--main" onClick={createUser}>Start!</button>
             </div>
         </div>
