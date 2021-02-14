@@ -17,19 +17,14 @@
 }
 
 .rules {
-    text-align: center;
-    margin: 10px 0;
-    transition: 0.2s;
-}
-
-.h-0 {
     height: 0;
-    visibility: hidden;
     transition: 0.2s;
+    visibility: hidden;
+    opacity: 0;
 }
 
-.h-1 {
+.activeRules {
+    height: 60px;
     visibility: visible;
-    transition: 0.2s;
-    height: 100px;
+    opacity: 1;
 }

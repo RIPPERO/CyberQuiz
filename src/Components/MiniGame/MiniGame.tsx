@@ -22,7 +22,7 @@ class MiniGame extends Component<security> {
     state: miniGame = {
         redirect: false,
         showRules: false,
-        klasa: "h-0"
+        klasa: "rules"
     }
 
     componentDidMount() {
@@ -47,17 +47,17 @@ class MiniGame extends Component<security> {
     }
 
     toogleRules() {
-        if (this.state.klasa === "h-0") {
+        if (this.state.klasa === "rules") {
             this.setState({
                 showRules: !this.state.showRules,
-                klasa: "h-1",
+                klasa: "rules activeRules",
             })
         }
-        
+
         else {
             this.setState({
                 showRules: !this.state.showRules,
-                klasa: "h-0",
+                klasa: "rules",
             })
         }
     }
@@ -72,9 +72,11 @@ class MiniGame extends Component<security> {
                     <p className="font--medium margin">You have to win this minigame to back to the quiz.</p>
                     <button className="button--main" onClick={() => this.toogleRules()}>Rules</button>
 
-                    {this.state.showRules && (<div className={this.state.klasa}><p className="font--small">You need to gather 18-20 points to win</p>
-                        <p className="font--small">You start with 1-5 points</p>
-                        <p className="font--small">You can select which range of points you would like to get: 1-8 or 4-7.</p></div>)}
+                    <div className={this.state.klasa}>
+                        <p className="font--small">You need to gather 18-20 points to win.</p>
+                        <p className="font--small">You start with 1-5 points.</p>
+                        <p className="font--small">You can select which range of points you would like to get: 1-8 or 4-7.</p>
+                    </div>
 
                     <button className="button--main" onClick={() => this.clickButton()}>Go back to question</button>
                 </div>
