@@ -15,6 +15,8 @@ interface miniGame {
     redirect: boolean,
     showRules: boolean,
     klasa: string,
+    miniGameScore: number,
+    hide: boolean
 }
 
 class MiniGame extends Component<security> {
@@ -22,7 +24,9 @@ class MiniGame extends Component<security> {
     state: miniGame = {
         redirect: false,
         showRules: false,
-        klasa: "rules"
+        klasa: "rules",
+        miniGameScore: 0,
+        hide: true,
     }
 
     componentDidMount() {
@@ -62,10 +66,52 @@ class MiniGame extends Component<security> {
         }
     }
 
+    drawNumber() {
+        let score = Math.floor(Math.random() * (6 - 1)) + 1;
+        this.setState({
+            miniGameScore: this.state.miniGameScore + score,
+            hide: false,
+        })
+    }
+
+    drawNumber18() {
+        let score = Math.floor(Math.random() * (9 - 1)) + 1;
+        this.setState({
+            miniGameScore: this.state.miniGameScore + score,
+        })
+
+        
+
+        setTimeout(() => {
+            this.checkWin();
+        }, 1);
+    }
+
+    drawNumber47() {
+        let score = Math.floor(Math.random() * (8 - 4)) + 4;
+        this.setState({
+            miniGameScore: this.state.miniGameScore + score,
+        })
+
+        setTimeout(() => {
+            this.checkWin();
+        }, 1);
+    }
+
+    checkWin() {
+        console.log("checkwin");
+        if (this.state.miniGameScore >= 18 && this.state.miniGameScore <= 20) {
+            alert(`Good job! You have ${this.state.miniGameScore} points! Now you will return to question!`);
+            this.clickButton();
+        }
+        else if (this.state.miniGameScore > 20) {
+            alert("Oh... You lost!");
+        }
+    }
+
     render() {
         return (
             <div className="minigame-container">
-                {this.renderRedirect()}
                 <Header />
 
                 <div className="minigameDiv">
@@ -78,7 +124,25 @@ class MiniGame extends Component<security> {
                         <p className="font--small">You can select which range of points you would like to get: 1-8 or 4-7.</p>
                     </div>
 
+                    <p className="padding-sml font--small">Score: {this.state.miniGameScore}</p>
+
+                    {this.state.hide && (
+                        <div className="padding-sml">
+                            <button className="button--main" onClick={() => this.drawNumber()}> Draw a number 1-5 </button>
+                        </div>
+                    )}
+
+                    {!this.state.hide && (
+                        <div className="padding-sml draw-buttons">
+                            <button className="button--main" onClick={() => this.drawNumber18()}> Draw a number 1-8 </button>
+                            <button className="button--main" style={{ marginTop: "10px" }} onClick={() => this.drawNumber47()}> Draw a number 4-7</button>
+                        </div>
+                    )}
+
+
                     <button className="button--main" onClick={() => this.clickButton()}>Go back to question</button>
+
+                    {this.renderRedirect()}
                 </div>
             </div>
         )

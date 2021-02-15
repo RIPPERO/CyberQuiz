@@ -28,3 +28,12 @@
     visibility: visible;
     opacity: 1;
 }
+
+.padding-sml {
+    padding: $padding-small 0;
+}
+
+.draw-buttons {
+    display: flex;
+    flex-direction: column;
+}
