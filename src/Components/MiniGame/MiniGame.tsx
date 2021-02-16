@@ -12,7 +12,8 @@ interface security {
 }
 
 interface miniGame {
-    redirect: boolean,
+    redirectToQuestion: boolean,
+    redirectToQuizUser: boolean,
     showRules: boolean,
     klasa: string,
     miniGameScore: number,
@@ -22,7 +23,8 @@ interface miniGame {
 class MiniGame extends Component<security> {
 
     state: miniGame = {
-        redirect: false,
+        redirectToQuestion: false,
+        redirectToQuizUser: false,
         showRules: false,
         klasa: "rules",
         miniGameScore: 0,
@@ -38,15 +40,27 @@ class MiniGame extends Component<security> {
         })
     }
 
-    setRedirect() {
+    setRedirectToQuestion() {
         this.setState({
-            redirect: true,
+            redirectToQuestion: true,
         })
     }
 
-    renderRedirect = () => {
-        if (this.state.redirect) {
+    setRedirectToQuizUser() {
+        this.setState({
+            redirectToQuizUser: true,
+        })
+    }
+
+    renderRedirectToQuestion = () => {
+        if (this.state.redirectToQuestion) {
             return <Redirect to='/questions' />
+        }
+    }
+
+    renderRedirectToQuizUser = () => {
+        if (this.state.redirectToQuizUser) {
+            return <Redirect to='/quiz-user' />
         }
     }
 
@@ -91,17 +105,19 @@ class MiniGame extends Component<security> {
     checkWin() {
         if (this.state.miniGameScore >= 18 && this.state.miniGameScore <= 20) {
             alert(`Good job! You have ${this.state.miniGameScore} points! Now you will return to question!`);
-            this.setRedirect();
+            this.setRedirectToQuestion();
         }
         else if (this.state.miniGameScore > 20) {
             alert("Oh... You lost!");
+            this.setRedirectToQuizUser();
         }
     }
 
     render() {
         return (
             <div className="minigame-container">
-                {this.renderRedirect()}
+                {this.renderRedirectToQuestion()}
+                {this.renderRedirectToQuizUser()}
                 <Header />
 
                 <div className="minigameDiv">
