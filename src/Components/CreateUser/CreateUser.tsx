@@ -82,7 +82,29 @@ function CreateUser(props) {
                     else {
                         let obj = JSON.parse(data);
                         if (obj.code === "ER_DUP_ENTRY") {
-                            alert(`Username ${name} already exists. Choose a different one!`);
+                            fetch(API1)
+                                .then((response) => response.json())
+                                .then(data => {
+                                    let userID = 0;
+                                    for (let i = 0; i < data.length; i++) {
+                                        if (data[i].username === name) {
+                                            userID = data[i].user_ID;
+                                            break;
+                                        }
+                                    }
+
+                                    store.dispatch({
+                                        type: "SET_USERNAME",
+                                        payload: {
+                                            username: name,
+                                            user_ID: userID,
+                                        },
+                                    })
+                                })
+
+                            alert(`Username ${name} already exists. Welcome back!`);
+                            history.push('/quiz');
+
                         }
                         else if (obj.code === "ER_BAD_DB_ERROR") {
                             alert("Bad database name!");

@@ -1,15 +1,12 @@
 const mysql = require('mysql');
-let dotenv = require('dotenv')
+let dotenv = require('dotenv');
 
-if (process.platform === "win32") {
-  dotenv = require('dotenv').config({ path: __dirname + './../../.env' });
-}
-
-else if (process.platform === "darwin") {
+if (process.platform === "darwin") {
   dotenv = require('dotenv').config({ path: './../../.env' });
 }
-
-console.log(dotenv);
+else {
+  dotenv = require('dotenv').config({ path: __dirname + './../../.env' });
+}
 
 const connection = mysql.createConnection({
   user: process.env.DB_USER,
