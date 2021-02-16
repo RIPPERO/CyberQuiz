@@ -9,6 +9,7 @@ import "./Questions.scss";
 interface security {
     apiUrl: string,
     usernameSet: boolean,
+    user_ID: string,
     quiz_ID: number,
     score: number,
     questionNumber: number,
@@ -20,7 +21,8 @@ interface displayQuestions {
     isCorrectAnswer: any,
     question: string,
     questionID: number,
-    redirect: boolean,
+    redirectToMiniGame: boolean,
+    redirectToQuizUser: boolean,
 }
 
 class Questions extends Component<security> {
@@ -31,7 +33,8 @@ class Questions extends Component<security> {
         isCorrectAnswer: 0,
         question: "",
         questionID: 0,
-        redirect: false,
+        redirectToMiniGame: false,
+        redirectToQuizUser: false,
     }
 
     componentDidMount() {
@@ -100,62 +103,105 @@ class Questions extends Component<security> {
 
                 let answer = parseInt(this.state.isCorrectAnswer, 10);
 
-                if (answer === 1) {
-                    console.log("poprawna odp");
-                    store.dispatch({
-                        type: "UPDATE_SCORE",
-                        payload: {
-                            score: this.props.score + 1,
-                        },
-                    })
-                    if (this.state.questionArray.length === this.props.questionNumber + 1) {
-                        console.log("koniec pytań");
+                if (this.state.questionArray.length === this.props.questionNumber + 1) {
+                    if (answer === 1) {
+                        store.dispatch({
+                            type: "UPDATE_SCORE",
+                            payload: {
+                                score: this.props.score + 1,
+                            },
+                        })
+
+                        this.setRedirectToQuizUser();
                     }
                     else {
-                        store.dispatch({
-                            type: "INCREASE_QUESTION_NUMBER",
-                            payload: {
-                                questionNumber: this.props.questionNumber + 1,
-                            }
-                        })
-                    }
-                    this.componentDidMount();
-                }
-                else {
-                    console.log("błędna odp");
-                    if (this.state.questionArray.length === this.props.questionNumber + 1) {
-                        console.log("koniec pytań");
-                    }
-                    else {
-                        store.dispatch({
-                            type: "INCREASE_QUESTION_NUMBER",
-                            payload: {
-                                questionNumber: this.props.questionNumber + 1,
-                            }
-                        })
+                        this.setRedirectToQuizUser();
                     }
 
-                    this.setRedirect();
+                    const API3 = `${this.props.apiUrl}quiz-user/add`;
+
+                    const quiz_user_json = { score: this.props.score, quiz_ID: this.props.quiz_ID, user_ID_ID: this.props.user_ID };
+
+                    fetch(API3, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ quiz_user_json }),
+                    })
+
+
+                    // const answer_user_json = { };
+                    // const API4 = `${this.props.apiUrl}answer-user/add`;
+                    // fetch(API4, {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //     },
+                    //     body: JSON.stringify({ answer_user_json }),
+                    // })
+                }
+                else {
+                    if (answer === 1) {
+                        store.dispatch({
+                            type: "UPDATE_SCORE",
+                            payload: {
+                                score: this.props.score + 1,
+                            },
+                        })
+
+                        store.dispatch({
+                            type: "INCREASE_QUESTION_NUMBER",
+                            payload: {
+                                questionNumber: this.props.questionNumber + 1,
+                            }
+                        })
+
+                        this.componentDidMount();
+                    }
+                    else {
+                        store.dispatch({
+                            type: "INCREASE_QUESTION_NUMBER",
+                            payload: {
+                                questionNumber: this.props.questionNumber + 1,
+                            }
+                        })
+
+                        this.setRedirectToMiniGame();
+                    }
                 }
             })
     }
 
-    setRedirect = () => {
+    setRedirectToMiniGame = () => {
         this.setState({
-            redirect: true,
+            redirectToMiniGame: true,
         })
     }
 
-    renderRedirect = () => {
-        if (this.state.redirect) {
+    setRedirectToQuizUser = () => {
+        this.setState({
+            redirectToQuizUser: true,
+        })
+    }
+
+    renderRedirectToMiniGame = () => {
+        if (this.state.redirectToMiniGame) {
             return <Redirect to='/minigame' />
+        }
+    }
+
+    renderRedirectToQuizUser = () => {
+        if (this.state.redirectToQuizUser) {
+            return <Redirect to='/quiz-user' />
         }
     }
 
     render() {
         return (
             <div className="questions-container">
-                {this.renderRedirect()}
+                {this.renderRedirectToMiniGame()}
+                {this.renderRedirectToQuizUser()}
                 <Header />
 
                 <div className="questionAnswers">
@@ -182,7 +228,8 @@ class Questions extends Component<security> {
 const mapStateToProps = (state) => {
     return {
         apiUrl: state.api.apiUrl,
-        usernameSet: state.security.usernameSet,
+        usernameSet: state.user.usernameSet,
+        user_ID: state.user.user_ID,
         quiz_ID: state.quiz.quiz_ID,
         score: state.question.score,
         questionNumber: state.question.questionNumber,

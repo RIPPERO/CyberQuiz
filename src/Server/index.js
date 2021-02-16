@@ -32,7 +32,7 @@ app.post('/user/post', (req, res) => {
   })
 });
 
-// Tabela Quiz
+// Tabela quiz
 app.get('/quiz', (req, res) => {
   model.showQuiz()
   .then(response => {
@@ -43,7 +43,7 @@ app.get('/quiz', (req, res) => {
   })
 });
 
-// Tabela Question
+// Tabela question
 app.post('/question', (req, res) => {
   model.selectQuiz(req.body)
   .then(response => {
@@ -67,6 +67,48 @@ app.post('/answers', (req, res) => {
 
 app.post('/answers/check', (req, res) => {
   model.checkAnswer(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
+// Tabela quiz_user
+app.post('/quiz_user', (req, res) => {
+  model.showQuiz_User(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
+app.post('/quiz-user/add', (req, res) => {
+  model.addQuiz_User(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
+// Tabela answer_user
+app.post('/answer-user', (req, res) => {
+  model.showAnswer_User(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
+app.post('/answer-user/add', (req, res) => {
+  model.addAnswer_User(req.body)
   .then(response => {
     res.status(200).send(response);
   })

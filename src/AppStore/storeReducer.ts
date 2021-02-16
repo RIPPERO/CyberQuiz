@@ -6,10 +6,12 @@ import apiRecuder from "../Components/Api/apiReducer";
 import quizReducer from "../Components/Quiz/quizReducer";
 import questionsReducer from "../Components/Questions/questionsReducer"
 import headerReducer from "../Components/Header/headerRecuder";
+import quizUserRedcuder from '../Components/QuizUser/quizUserReducer';
 
 export default combineReducers({
-   security: usernameReducer,
+   user: usernameReducer,
    quiz: quizReducer, 
+   quiz_user: quizUserRedcuder,
    question: questionsReducer,
    api: apiRecuder,
    header: headerReducer,

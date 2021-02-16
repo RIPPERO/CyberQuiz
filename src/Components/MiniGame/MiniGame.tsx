@@ -139,7 +139,7 @@ class MiniGame extends Component<security> {
 const mapStateToProps = (state) => {
     return {
         apiUrl: state.api.apiUrl,
-        usernameSet: state.security.usernameSet,
+        usernameSet: state.user.usernameSet,
     }
 }
 

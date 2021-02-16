@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import store from '../../AppStore/store';
+import Header from '../Header/Header';
 import "./ShowUsers.scss";
 
 function ShowUsers(props) {
   const [user, setUsers] = useState<any[]>([])
 
   useEffect(() => {
+    store.dispatch({
+      type: "SET_HEADER",
+      payload: {
+        headerText: "List of users in the database!",
+      },
+    })
+
     const getUsers = () => {
       const API = `${props.apiUrl}user`;
       fetch(API)
@@ -23,7 +32,7 @@ function ShowUsers(props) {
 
   return (
     <div className="quiz-container">
-      <p className="font--big">List of users in the database</p>
+      <Header />
 
       <div className="scroll">
         <div className="titleContainer">
