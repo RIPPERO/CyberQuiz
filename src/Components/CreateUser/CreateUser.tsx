@@ -30,6 +30,7 @@ function CreateUser(props) {
     function createUser() {
         let name = username.toUpperCase();
         const API = `${props.apiUrl}user/post`;
+        const API1 = `${props.apiUrl}user`;
 
         if (name === "") {
             alert("Username cannot be blank!");
@@ -61,9 +62,18 @@ function CreateUser(props) {
                     }
 
                     if (IsJson(data) === false) {
-                        store.dispatch({
-                            type: "SET_USERNAME"
-                        })
+                        fetch(API1)
+                            .then((response) => response.json())
+                            .then(dataID => {
+                                let id_usera = dataID[dataID.length - 1].user_ID;
+                                store.dispatch({
+                                    type: "SET_USERNAME",
+                                    payload: {
+                                        username: name,
+                                        user_ID: id_usera,
+                                    },
+                                })
+                            })
 
                         alert(`Username ${name} added!`);
                         history.push('/quiz');
@@ -81,7 +91,7 @@ function CreateUser(props) {
                             alert("Other error!\n" + obj.code);
                         }
                     }
-                });
+                })
         }
     }
 
