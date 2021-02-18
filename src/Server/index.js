@@ -96,6 +96,16 @@ app.post('/quiz-user/add', (req, res) => {
   })
 });
 
+app.get('/quiz-user/ai', (req, res) => {
+  model.getAIQuiz_User()
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
 // Tabela answer_user
 app.post('/answer-user', (req, res) => {
   model.showAnswer_User(req.body)

@@ -171,13 +171,9 @@ const addQuiz_User = (body) => {
   });
 }
 
-// Tabela answer_user
-const showAnswer_User = (body) => {
+const getAIQuiz_User = () => {
   return new Promise(function (resolve) {
-    var value1 = body.answer_user_json.user_ID_ID;
-    var value2 = body.answer_user_json.quiz_ID;
-    var value3 = body.answer_user_json.quiz_user_ID_ID;
-    var sql = "SELECT * FROM answer_user WHERE USER_ID_ID = " + value1 + " AND quiz_ID_ID = " + value2 + " AND quiz_user_ID_ID = " + value3;    
+    var sql = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'cyberquiz' AND TABLE_NAME = 'quiz_user'";
 
     connection.query(sql, function (err, results) {
       if (err) {
@@ -186,6 +182,46 @@ const showAnswer_User = (body) => {
       }
       else {
         resolve(results);
+      }
+    });
+  });
+}
+
+// Tabela answer_user
+const showAnswer_User = (body) => {
+  return new Promise(function (resolve) {
+    var value1 = body.answer_user_json.user_ID_ID;
+    var value2 = body.answer_user_json.quiz_ID;
+    var value3 = body.answer_user_json.quiz_user_ID_ID;
+    var sql = "SELECT * FROM answer_user WHERE USER_ID_ID = " + value1 + " AND quiz_ID_ID = " + value2 + " AND quiz_user_ID_ID = " + value3 + " ORDER BY `answer_user_ID`";
+
+    connection.query(sql, function (err, results) {
+      if (err) {
+        console.log(err.code + "\n" + err.sqlMessage);
+        resolve(err);
+      }
+      else {
+        resolve(results);
+      }
+    });
+  });
+}
+
+const addAnswer_User = (body) => {
+  return new Promise(function (resolve) {
+    const user_ID_ID = body.answer_user_json.user_ID_ID;
+    const quiz_ID_ID = body.answer_user_json.quiz_ID_ID;
+    const question_ID_ID = body.answer_user_json.question_ID_ID;
+    const answer_ID_ID = body.answer_user_json.answer_ID_ID;
+    const quiz_user_ID_ID = body.answer_user_json.quiz_user_ID_ID;
+    
+    var sql = "INSERT INTO answer_user (user_ID_ID, quiz_ID_ID, question_ID_ID, answer_ID_ID, quiz_user_ID_ID) VALUES (?)";
+    var values = [user_ID_ID, quiz_ID_ID, question_ID_ID, answer_ID_ID, quiz_user_ID_ID];
+
+    connection.query(sql, [values], function (err) {
+      if (err) {
+        console.log(err);
+        resolve(err);
       }
     });
   });
@@ -200,5 +236,7 @@ module.exports = {
   checkAnswer,
   showQuiz_User,
   addQuiz_User,
+  getAIQuiz_User,
   showAnswer_User,
+  addAnswer_User,
 }

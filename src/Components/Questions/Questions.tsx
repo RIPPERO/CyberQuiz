@@ -13,6 +13,8 @@ interface security {
     quiz_ID: number,
     score: number,
     questionNumber: number,
+    question_ID: number,
+    answer_ID: number,
 }
 
 interface displayQuestions {
@@ -21,6 +23,7 @@ interface displayQuestions {
     isCorrectAnswer: any,
     question: string,
     questionID: number,
+    quiz_userAI: number,
     redirectToMiniGame: boolean,
     redirectToQuizUser: boolean,
 }
@@ -33,6 +36,7 @@ class Questions extends Component<security> {
         isCorrectAnswer: 0,
         question: "",
         questionID: 0,
+        quiz_userAI: 0,
         redirectToMiniGame: false,
         redirectToQuizUser: false,
     }
@@ -60,6 +64,13 @@ class Questions extends Component<security> {
                 const API1 = `${this.props.apiUrl}answers`;
                 let questionID = this.state.questionID;
 
+                store.dispatch({
+                    type: "SET_QUESTION_ID",
+                    payload: {
+                        question_ID: this.state.questionID,
+                    },
+                })
+
                 fetch(API1, {
                     method: 'POST',
                     headers: {
@@ -82,9 +93,25 @@ class Questions extends Component<security> {
                 headerText: "Answer a Question!",
             },
         })
+
+        const API5 = `${this.props.apiUrl}quiz-user/ai`;
+        fetch(API5)
+            .then((response) => response.json())
+            .then(data => {
+                this.setState({
+                    quiz_userAI: data[0].AUTO_INCREMENT,
+                });
+            });
     }
 
     chooseAnswer(answerID) {
+        store.dispatch({
+            type: "SET_ANSWER_ID",
+            payload: {
+                answer_ID: answerID,
+            },
+        })
+
         const API2 = `${this.props.apiUrl}answers/check`;
 
         fetch(API2, {
@@ -128,17 +155,6 @@ class Questions extends Component<security> {
                         },
                         body: JSON.stringify({ quiz_user_json }),
                     })
-
-
-                    // const answer_user_json = { };
-                    // const API4 = `${this.props.apiUrl}answer-user/add`;
-                    // fetch(API4, {
-                    //     method: 'POST',
-                    //     headers: {
-                    //         'Content-Type': 'application/json',
-                    //     },
-                    //     body: JSON.stringify({ answer_user_json }),
-                    // })
                 }
                 else {
                     if (answer === 1) {
@@ -177,10 +193,19 @@ class Questions extends Component<security> {
                             body: JSON.stringify({ quiz_user_json }),
                         })
 
-
                         this.setRedirectToMiniGame();
                     }
                 }
+
+                const answer_user_json = { user_ID_ID: this.props.user_ID, quiz_ID_ID: this.props.quiz_ID, question_ID_ID: this.props.question_ID, answer_ID_ID: this.props.answer_ID, quiz_user_ID_ID: this.state.quiz_userAI };
+                const API4 = `${this.props.apiUrl}answer-user/add`;
+                fetch(API4, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ answer_user_json }),
+                })
             })
     }
 
@@ -244,6 +269,8 @@ const mapStateToProps = (state) => {
         quiz_ID: state.quiz.quiz_ID,
         score: state.question.score,
         questionNumber: state.question.questionNumber,
+        question_ID: state.question.question_ID,
+        answer_ID: state.question.answer_ID,
     }
 }
 

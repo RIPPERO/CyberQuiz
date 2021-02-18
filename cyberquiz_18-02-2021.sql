@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Wersja serwera:               5.7.31 - MySQL Community Server (GPL)
 -- Serwer OS:                    Win64
--- HeidiSQL Wersja:              11.1.0.6116
+-- HeidiSQL Wersja:              11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,16 +32,26 @@ CREATE TABLE IF NOT EXISTS `answer` (
 -- Zrzucanie danych dla tabeli cyberquiz.answer: 11 rows
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
 INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
-	(1, 'A. The site is encrypted', '1', 1, 1),
-	(2, 'B. The site is not available', '0', 1, 1),
-	(3, 'C. The site is updated to the newset version', '0', 1, 1),
-	(4, 'A. Use muli-faction authentication', '1', 2, 1),
-	(5, 'B. Share your passwords with friends', '0', 2, 1),
-	(6, 'C. Update your software frequently', '1', 2, 1),
-	(7, 'D. Use Wi-Fi networks protected with password', '1', 2, 1),
-	(8, 'A. False', '0', 3, 1),
-	(9, 'B. True', '1', 3, 1),
-	(10, 'A. True', '1', 4, 2),
+	(1, 'A. The site is encrypted', '1', 1, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(2, 'B. The site is not available', '0', 1, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(3, 'C. The site is updated to the newset version', '0', 1, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(4, 'A. Use muli-faction authentication', '1', 2, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(5, 'B. Share your passwords with friends', '0', 2, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(6, 'C. Update your software frequently', '1', 2, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(7, 'D. Use Wi-Fi networks protected with password', '1', 2, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(8, 'A. False', '0', 3, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(9, 'B. True', '1', 3, 1);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
+	(10, 'A. True', '1', 4, 2);
+INSERT INTO `answer` (`answer_ID`, `answer`, `is_correct`, `question_ID_ID`, `quiz_ID_ID`) VALUES
 	(11, 'B. False', '0', 4, 2);
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 
@@ -52,11 +62,13 @@ CREATE TABLE IF NOT EXISTS `answer_user` (
   `quiz_ID_ID` int(11) NOT NULL,
   `question_ID_ID` int(11) NOT NULL,
   `answer_ID_ID` int(11) NOT NULL,
+  `quiz_user_ID_ID` int(11) NOT NULL,
   PRIMARY KEY (`answer_user_ID`),
   KEY `FK__user` (`user_ID_ID`),
   KEY `FK__quiz` (`quiz_ID_ID`),
   KEY `FK__question` (`question_ID_ID`),
-  KEY `FK__answer` (`answer_ID_ID`)
+  KEY `FK__answer` (`answer_ID_ID`),
+  KEY `FK_answer_user_quiz_user` (`quiz_user_ID_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- Zrzucanie danych dla tabeli cyberquiz.answer_user: 0 rows
@@ -76,9 +88,12 @@ CREATE TABLE IF NOT EXISTS `question` (
 -- Zrzucanie danych dla tabeli cyberquiz.question: 4 rows
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
-	(1, 'What does the https at the beginning of a URL mean?', 1, 1),
-	(2, 'What can you do to prevent unauthorised access to your accounts/files?', 2, 1),
-	(3, 'Does backing up files help us to protect our data?', 3, 1),
+	(1, 'What does the https at the beginning of a URL mean?', 1, 1);
+INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
+	(2, 'What can you do to prevent unauthorised access to your accounts/files?', 2, 1);
+INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
+	(3, 'Does backing up files help us to protect our data?', 3, 1);
+INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
 	(4, 'Test', 1, 2);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 
@@ -94,7 +109,8 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 -- Zrzucanie danych dla tabeli cyberquiz.quiz: 2 rows
 /*!40000 ALTER TABLE `quiz` DISABLE KEYS */;
 INSERT INTO `quiz` (`quiz_ID`, `name`, `max_points`) VALUES
-	(1, 'Begginer Quiz', 5),
+	(1, 'Begginer Quiz', 5);
+INSERT INTO `quiz` (`quiz_ID`, `name`, `max_points`) VALUES
 	(2, 'Uppermidiate Quiz', 10);
 /*!40000 ALTER TABLE `quiz` ENABLE KEYS */;
 
@@ -102,7 +118,7 @@ INSERT INTO `quiz` (`quiz_ID`, `name`, `max_points`) VALUES
 CREATE TABLE IF NOT EXISTS `quiz_user` (
   `quiz_user_ID` int(11) NOT NULL AUTO_INCREMENT,
   `final_score` int(11) NOT NULL,
-  `date` date NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `quiz_ID_ID` int(11) NOT NULL DEFAULT '0',
   `user_ID_ID` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`quiz_user_ID`),
@@ -125,12 +141,14 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Zrzucanie danych dla tabeli cyberquiz.user: 3 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`user_ID`, `username`) VALUES
-	(1, 'adrian'),
-	(2, 'adam'),
-	(3, 'jarek');
+	(1, 'ADRIAN');
+INSERT INTO `user` (`user_ID`, `username`) VALUES
+	(2, 'ADAM');
+INSERT INTO `user` (`user_ID`, `username`) VALUES
+	(3, 'JAREK');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
