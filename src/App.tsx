@@ -16,6 +16,8 @@ import Questions from './Components/Questions/Questions';
 import MiniGame from './Components/MiniGame/MiniGame';
 import QuizUser from './Components/QuizUser/QuizUser';
 import AnswerUser from './Components/AnswerUser/AnswerUser';
+import Leaderboard from './Components/Leaderboard/Leaderboard';
+import LeaderboardID from './Components/Leaderboard/LeaderboardID/LeaderboardID';
 
 class App extends Component {
   render() {
@@ -32,6 +34,8 @@ class App extends Component {
               <Route exact path="/minigame" component={MiniGame} />
               <Route exact path="/quiz-user" component={QuizUser} />
               <Route exact path="/answer-user" component={AnswerUser} />
+              <Route exact path="/leaderboard" component={Leaderboard} />
+              <Route exact path="/leaderboard/:id" component={LeaderboardID} />
 
               <Route exact path="/404" component={PageNotFound} />
               <Route>

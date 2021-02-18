@@ -223,6 +223,27 @@ const addAnswer_User = (body) => {
         console.log(err);
         resolve(err);
       }
+      else {
+        resolve("Success!");
+      }
+    });
+  });
+}
+
+// Leaderboard
+const getLeaderboard = (body) => {
+  return new Promise(function (resolve) {
+    var value = body.get_leaderboard;
+    var sql = "SELECT final_score, user_ID_ID, username FROM quiz_user INNER JOIN user ON user.user_ID = quiz_user.user_ID_ID WHERE quiz_ID_ID = " + value + " ORDER BY `final_score` DESC";
+
+    connection.query(sql, function (err, results) {
+      if (err) {
+        console.log(err.code + "\n" + err.sqlMessage);
+        resolve(err);
+      }
+      else {
+        resolve(results);
+      }
     });
   });
 }
@@ -239,4 +260,5 @@ module.exports = {
   getAIQuiz_User,
   showAnswer_User,
   addAnswer_User,
+  getLeaderboard,
 }

@@ -7,6 +7,7 @@ import quizReducer from "../Components/Quiz/quizReducer";
 import questionsReducer from "../Components/Questions/questionsReducer"
 import headerReducer from "../Components/Header/headerRecuder";
 import quizUserRedcuder from '../Components/QuizUser/quizUserReducer';
+import leaderboardReducer from '../Components/Leaderboard/leaderboardReducer';
 
 export default combineReducers({
    user: usernameReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
    question: questionsReducer,
    api: apiRecuder,
    header: headerReducer,
+   leaderboard: leaderboardReducer,
 });
