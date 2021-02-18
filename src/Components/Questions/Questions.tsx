@@ -183,17 +183,6 @@ class Questions extends Component<security> {
                             }
                         })
 
-                        const API3 = `${this.props.apiUrl}quiz-user/add`;
-                        const quiz_user_json = { score: this.props.score, quiz_ID: this.props.quiz_ID, user_ID_ID: this.props.user_ID };
-
-                        fetch(API3, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ quiz_user_json }),
-                        })
-
                         this.setRedirectToMiniGame();
                     }
                 }

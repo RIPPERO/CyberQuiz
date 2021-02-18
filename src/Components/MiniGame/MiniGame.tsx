@@ -10,6 +10,8 @@ interface security {
     apiUrl: string,
     usernameSet: boolean,
     quiz_ID: number,
+    user_ID: string,
+    score: number,
 }
 
 interface miniGame {
@@ -109,6 +111,17 @@ class MiniGame extends Component<security> {
             this.setRedirectToQuestion();
         }
         else if (this.state.miniGameScore > 20) {
+            const API3 = `${this.props.apiUrl}quiz-user/add`;
+            const quiz_user_json = { score: this.props.score, quiz_ID: this.props.quiz_ID, user_ID_ID: this.props.user_ID };
+
+            fetch(API3, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quiz_user_json }),
+            })
+
             alert("Oh... You lost!");
             this.setRedirectToQuizUser();
         }
@@ -162,6 +175,8 @@ const mapStateToProps = (state) => {
     return {
         apiUrl: state.api.apiUrl,
         usernameSet: state.user.usernameSet,
+        score: state.question.score,
+        user_ID: state.user.user_ID,
     }
 }
 
