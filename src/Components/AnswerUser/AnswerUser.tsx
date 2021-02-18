@@ -53,11 +53,11 @@ function AnswerUser(props) {
                         return (
                             <div className="quizContainer" key={answer_user.answer_user_ID}>
                                 <div className="quizContainerRow">
-                                    <p className="font--small"> {answer_user.question_ID_ID} </p>
+                                    <p className="font--small"> {answer_user.question} </p>
                                 </div>
 
                                 <div className="quizContainerRow">
-                                    <p className="font--small"> {answer_user.answer_ID_ID} </p>
+                                    <p className="font--small"> {answer_user.answer} </p>
                                 </div>
                             </div>
                         )

@@ -193,7 +193,7 @@ const showAnswer_User = (body) => {
     var value1 = body.answer_user_json.user_ID_ID;
     var value2 = body.answer_user_json.quiz_ID;
     var value3 = body.answer_user_json.quiz_user_ID_ID;
-    var sql = "SELECT * FROM answer_user WHERE USER_ID_ID = " + value1 + " AND quiz_ID_ID = " + value2 + " AND quiz_user_ID_ID = " + value3 + " ORDER BY `answer_user_ID`";
+    var sql = "SELECT answer_user_ID, user_ID_ID, answer_user.quiz_ID_ID, answer_user.question_ID_ID, answer_ID_ID, quiz_user_ID_ID, question_ID, question, answer FROM answer_user INNER JOIN question ON answer_user.question_ID_ID = question.question_ID INNER JOIN answer ON answer_user.answer_ID_ID = answer.answer_ID  WHERE USER_ID_ID = " + value1 + " AND answer_user.quiz_ID_ID = " + value2 + " AND answer_user.quiz_user_ID_ID = " + value3 + " ORDER BY `answer_user_ID`";
 
     connection.query(sql, function (err, results) {
       if (err) {
