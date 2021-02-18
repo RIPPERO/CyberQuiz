@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import store from '../../AppStore/store';
 import Header from '../Header/Header';
-// import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
+import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./Questions.scss";
 
 interface security {
@@ -29,7 +29,6 @@ interface displayQuestions {
 }
 
 class Questions extends Component<security> {
-
     state: displayQuestions = {
         questionArray: [],
         answersArray: [],
@@ -42,66 +41,68 @@ class Questions extends Component<security> {
     }
 
     componentDidMount() {
-        const API = `${this.props.apiUrl}question`;
-        let quiz_ID_ID = this.props.quiz_ID;
+        if (this.props.usernameSet) {
+            const API = `${this.props.apiUrl}question`;
+            let quiz_ID_ID = this.props.quiz_ID;
 
-        fetch(API, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ quiz_ID_ID }),
-        })
-            .then((response) => response.json())
+            fetch(API, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quiz_ID_ID }),
+            })
+                .then((response) => response.json())
 
-            .then(data => {
-                this.setState({
-                    questionArray: data,
-                    question: data[this.props.questionNumber].question,
-                    questionID: data[this.props.questionNumber].question_ID,
-                });
+                .then(data => {
+                    this.setState({
+                        questionArray: data,
+                        question: data[this.props.questionNumber].question,
+                        questionID: data[this.props.questionNumber].question_ID,
+                    });
 
-                const API1 = `${this.props.apiUrl}answers`;
-                let questionID = this.state.questionID;
+                    const API1 = `${this.props.apiUrl}answers`;
+                    let questionID = this.state.questionID;
 
-                store.dispatch({
-                    type: "SET_QUESTION_ID",
-                    payload: {
-                        question_ID: this.state.questionID,
-                    },
-                })
-
-                fetch(API1, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ questionID }),
-                })
-                    .then((response) => response.json())
-
-                    .then(data1 => {
-                        this.setState({
-                            answersArray: data1,
-                        })
+                    store.dispatch({
+                        type: "SET_QUESTION_ID",
+                        payload: {
+                            question_ID: this.state.questionID,
+                        },
                     })
+
+                    fetch(API1, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ questionID }),
+                    })
+                        .then((response) => response.json())
+
+                        .then(data1 => {
+                            this.setState({
+                                answersArray: data1,
+                            })
+                        })
+                })
+
+            store.dispatch({
+                type: "SET_HEADER",
+                payload: {
+                    headerText: "Answer a Question!",
+                },
             })
 
-        store.dispatch({
-            type: "SET_HEADER",
-            payload: {
-                headerText: "Answer a Question!",
-            },
-        })
-
-        const API5 = `${this.props.apiUrl}quiz-user/ai`;
-        fetch(API5)
-            .then((response) => response.json())
-            .then(data => {
-                this.setState({
-                    quiz_userAI: data[0].AUTO_INCREMENT,
+            const API5 = `${this.props.apiUrl}quiz-user/ai`;
+            fetch(API5)
+                .then((response) => response.json())
+                .then(data => {
+                    this.setState({
+                        quiz_userAI: data[0].AUTO_INCREMENT,
+                    });
                 });
-            });
+        }
     }
 
     chooseAnswer(answerID) {
@@ -234,29 +235,34 @@ class Questions extends Component<security> {
     }
 
     render() {
-        return (
-            <div className="questions-container">
-                {this.renderRedirectToMiniGame()}
-                {this.renderRedirectToQuizUser()}
-                <Header />
+        if (this.props.usernameSet) {
+            return (
+                <div className="questions-container">
+                    {this.renderRedirectToMiniGame()}
+                    {this.renderRedirectToQuizUser()}
+                    <Header />
 
-                <div className="questionAnswers">
-                    <div className="questionText">
-                        <p className="font--medium">{this.state.question}</p>
-                        <p className="font--small">Score: {this.props.score}</p>
-                    </div>
+                    <div className="questionAnswers">
+                        <div className="questionText">
+                            <p className="font--medium">{this.state.question}</p>
+                            <p className="font--small">Score: {this.props.score}</p>
+                        </div>
 
-                    <div className="answers">
-                        {this.state.answersArray.map((answers) => {
-                            return (
-                                <div className="answerRow" onClick={() => this.chooseAnswer(answers.answer_ID)} key={answers.answer_ID}>
-                                    <p className="font--small">{answers.answer}</p>
-                                </div>
-                            )
-                        })}
+                        <div className="answers">
+                            {this.state.answersArray.map((answers) => {
+                                return (
+                                    <div className="answerRow" onClick={() => this.chooseAnswer(answers.answer_ID)} key={answers.answer_ID}>
+                                        <p className="font--small">{answers.answer}</p>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
-            </div>
+            )
+        }
+        return (
+            <NotUsernameSet />
         )
     }
 }

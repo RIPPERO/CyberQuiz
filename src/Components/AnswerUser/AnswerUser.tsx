@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import store from '../../AppStore/store';
 import Header from '../Header/Header';
-// import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
+import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./AnswerUser.scss";
 
 function AnswerUser(props) {
@@ -28,48 +28,53 @@ function AnswerUser(props) {
         })
             .then((response) => response.json())
             .then(data => {
-                console.log(data);
                 setAnswerUser(data);
             });
     }, [props]);
 
-    return (
-        <div className="quiz-user-container">
-            <Header />
-            <div className="scroll">
-                <div className="titleContainer">
-                    <div className="titleContainer--item">
-                        <p className="font--medium--bold">Question</p>
-                    </div>
-
-                    <div className="titleContainer--item">
-                        <p className="font--medium--bold">Answer</p>
-                    </div>
-                </div>
-
-                <hr className="hr--main" />
-
-                {answer_user.map((answer_user) => {
-                    return (
-                        <div className="quizContainer" key={answer_user.answer_user_ID}>
-                            <div className="quizContainerRow">
-                                <p className="font--small"> {answer_user.question_ID_ID} </p>
-                            </div>
-
-                            <div className="quizContainerRow">
-                                <p className="font--small"> {answer_user.answer_ID_ID} </p>
-                            </div>
+    if (props.usernameSet) {
+        return (
+            <div className="quiz-user-container">
+                <Header />
+                <div className="scroll">
+                    <div className="titleContainer">
+                        <div className="titleContainer--item">
+                            <p className="font--medium--bold">Question</p>
                         </div>
-                    )
-                })}
+
+                        <div className="titleContainer--item">
+                            <p className="font--medium--bold">Answer</p>
+                        </div>
+                    </div>
+
+                    <hr className="hr--main" />
+
+                    {answer_user.map((answer_user) => {
+                        return (
+                            <div className="quizContainer" key={answer_user.answer_user_ID}>
+                                <div className="quizContainerRow">
+                                    <p className="font--small"> {answer_user.question_ID_ID} </p>
+                                </div>
+
+                                <div className="quizContainerRow">
+                                    <p className="font--small"> {answer_user.answer_ID_ID} </p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+    return (
+        <NotUsernameSet />
+    )
 }
 
 const mapStateToProps = (state) => {
     return {
         apiUrl: state.api.apiUrl,
+        usernameSet: state.user.usernameSet,
         user_ID: state.quiz_user.user_ID,
         quiz_ID: state.quiz_user.quiz_ID_ID,
         quiz_user_ID: state.quiz_user.quiz_user_ID,

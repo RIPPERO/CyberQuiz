@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import store from '../../AppStore/store';
 import Header from '../Header/Header';
-// import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
+import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./Quiz.scss";
 
 interface security {
@@ -66,7 +66,7 @@ class Quiz extends Component<security> {
     }
 
     render() {
-        // if (this.props.usernameSet) {
+        if (this.props.usernameSet) {
         return (
             <div className="quiz-container">
                 <Header />
@@ -108,11 +108,11 @@ class Quiz extends Component<security> {
             </div>
         )
     }
-    // return (
-    //     <NotUsernameSet />
-    // )
+    return (
+        <NotUsernameSet />
+    )
 }
-// }
+}
 
 const mapStateToProps = (state) => {
     return {

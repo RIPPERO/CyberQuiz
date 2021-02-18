@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { Redirect } from 'react-router';
 import store from '../../AppStore/store';
 import Header from '../Header/Header';
-// import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
+import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./MiniGame.scss";
 
 interface security {
     apiUrl: string,
+    usernameSet: boolean,
     quiz_ID: number,
 }
 
@@ -114,38 +115,43 @@ class MiniGame extends Component<security> {
     }
 
     render() {
-        return (
-            <div className="minigame-container">
-                {this.renderRedirectToQuestion()}
-                {this.renderRedirectToQuizUser()}
-                <Header />
+        if (this.props.usernameSet) {
+            return (
+                <div className="minigame-container">
+                    {this.renderRedirectToQuestion()}
+                    {this.renderRedirectToQuizUser()}
+                    <Header />
 
-                <div className="minigameDiv">
-                    <p className="font--medium margin">You have to win this minigame to back to the quiz.</p>
-                    <button className="button--main" onClick={() => this.toogleRules()}>Rules</button>
+                    <div className="minigameDiv">
+                        <p className="font--medium margin">You have to win this minigame to back to the quiz.</p>
+                        <button className="button--main" onClick={() => this.toogleRules()}>Rules</button>
 
-                    <div className={this.state.klasa}>
-                        <p className="font--small">You need to gather 18-20 points to win.</p>
-                        <p className="font--small">You start with 1-5 points.</p>
-                        <p className="font--small">You can select which range of points you would like to get: 1-8 or 4-7.</p>
+                        <div className={this.state.klasa}>
+                            <p className="font--small">You need to gather 18-20 points to win.</p>
+                            <p className="font--small">You start with 1-5 points.</p>
+                            <p className="font--small">You can select which range of points you would like to get: 1-8 or 4-7.</p>
+                        </div>
+
+                        <p className="padding-sml font--small">Score: {this.state.miniGameScore}</p>
+
+                        {this.state.hide && (
+                            <div className="padding-sml">
+                                <button className="button--main" onClick={() => this.drawNumber()}> Draw a number 1-5 </button>
+                            </div>
+                        )}
+
+                        {!this.state.hide && (
+                            <div className="padding-sml draw-buttons">
+                                <button className="button--main" onClick={() => this.drawNumber18()}> Draw a number 1-8 </button>
+                                <button className="button--main" style={{ marginTop: "10px" }} onClick={() => this.drawNumber47()}> Draw a number 4-7</button>
+                            </div>
+                        )}
                     </div>
-
-                    <p className="padding-sml font--small">Score: {this.state.miniGameScore}</p>
-
-                    {this.state.hide && (
-                        <div className="padding-sml">
-                            <button className="button--main" onClick={() => this.drawNumber()}> Draw a number 1-5 </button>
-                        </div>
-                    )}
-
-                    {!this.state.hide && (
-                        <div className="padding-sml draw-buttons">
-                            <button className="button--main" onClick={() => this.drawNumber18()}> Draw a number 1-8 </button>
-                            <button className="button--main" style={{ marginTop: "10px" }} onClick={() => this.drawNumber47()}> Draw a number 4-7</button>
-                        </div>
-                    )}
                 </div>
-            </div>
+            )
+        }
+        return (
+            <NotUsernameSet />
         )
     }
 
