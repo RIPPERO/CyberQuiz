@@ -58,7 +58,7 @@ function QuizUser(props) {
         return (
             <div className="quiz-user-container">
                 <Header />
-                <div className="scroll">
+                <div className="scroll" style={{margin: "auto"}}>
                     <div className="titleContainer">
                         <div className="titleContainer--item">
                             <p className="font--medium--bold">Quiz number</p>

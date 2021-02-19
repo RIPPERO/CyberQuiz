@@ -42,7 +42,7 @@ function LeaderboardID(props) {
         return (
             <div className="leaderboard-container">
                 <Header />
-                <div className="scroll">
+                <div className="scroll" style={{margin: "auto"}}>
                     {leaderboard.length > 0 &&
                         <div>
                             <div className="titleContainer">

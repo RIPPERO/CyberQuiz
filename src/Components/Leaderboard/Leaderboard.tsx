@@ -47,7 +47,7 @@ function Leaderboard(props) {
         return (
             <div className="leaderboard-container">
                 <Header />
-                <div className="scroll">
+                <div className="scroll" style={{margin: "auto"}}>
                     <div className="titleContainer">
                         <div className="titleContainer--item">
                             <p className="font--medium--bold">Number</p>
