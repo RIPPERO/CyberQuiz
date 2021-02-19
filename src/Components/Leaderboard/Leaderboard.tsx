@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import store from '../../AppStore/store';
 import { useHistory } from "react-router-dom";
 import Header from '../Header/Header';
-// import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
+import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./Leaderboard.scss";
 
 function Leaderboard(props) {
@@ -35,54 +35,60 @@ function Leaderboard(props) {
                 quiz_ID_for_leaderboard: quiz_ID_ID,
             },
         })
-        
-        history.push(`/leaderboard/${props.quiz_ID_for_leaderboard}`);
+
+        history.push(`/leaderboard/${quiz_ID_ID}`);
     }
 
-    // if (props.usernameSet) {
-    return (
-        <div className="leaderboard-container">
-            <Header />
-            <div className="scroll">
-                <div className="titleContainer">
-                    <div className="titleContainer--item">
-                        <p className="font--medium--bold">Number</p>
+    function goToQuizUser() {
+        history.push('/quiz-user');
+    }
+
+    if (props.usernameSet) {
+        return (
+            <div className="leaderboard-container">
+                <Header />
+                <div className="scroll">
+                    <div className="titleContainer">
+                        <div className="titleContainer--item">
+                            <p className="font--medium--bold">Number</p>
+                        </div>
+
+                        <div className="titleContainer--item">
+                            <p className="font--medium--bold">Name</p>
+                        </div>
                     </div>
 
-                    <div className="titleContainer--item">
-                        <p className="font--medium--bold">Name</p>
-                    </div>
+                    <hr className="hr--main" />
+
+                    {quiz_list.map((quiz) => {
+                        return (
+                            <div className="quizContainer" onClick={() => chooseQuiz(quiz.quiz_ID)} key={quiz.quiz_ID}>
+                                <div className="quizContainerRow">
+                                    <p className="font--small"> {quiz.quiz_ID} </p>
+                                </div>
+                                <div className="quizContainerRow">
+                                    <p className="font--small"> {quiz.name} </p>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
 
-                <hr className="hr--main" />
-
-                {quiz_list.map((quiz) => {
-                    return (
-                        <div className="quizContainer" onClick={() => chooseQuiz(quiz.quiz_ID)} key={quiz.quiz_ID}>
-                            <div className="quizContainerRow">
-                                <p className="font--small"> {quiz.quiz_ID} </p>
-                            </div>
-                            <div className="quizContainerRow">
-                                <p className="font--small"> {quiz.name} </p>
-                            </div>
-                        </div>
-                    )
-                })}
+                <div className="button-redirect">
+                    <button className="button--main" onClick={() => goToQuizUser()}>Go back</button>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+    return (
+        <NotUsernameSet />
+    )
 }
-//     return (
-//         <NotUsernameSet />
-//     )
-// }
 
 const mapStateToProps = (state) => {
     return {
         apiUrl: state.api.apiUrl,
         usernameSet: state.user.usernameSet,
-        user_ID: state.quiz_user.user_ID,
-        quiz_ID: state.quiz_user.quiz_ID_ID,
     }
 }
 

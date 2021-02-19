@@ -50,6 +50,10 @@ function QuizUser(props) {
         history.push('/answer-user');
     }
 
+    function goToLeaderboard() {
+        history.push('/leaderboard');
+    }
+
     if (props.usernameSet) {
         return (
             <div className="quiz-user-container">
@@ -88,6 +92,10 @@ function QuizUser(props) {
                             </div>
                         )
                     })}
+                </div>
+                
+                <div className="button-redirect">
+                    <button className="button--main" onClick={() => goToLeaderboard()}>Show Leaderboard</button>
                 </div>
             </div>
         );

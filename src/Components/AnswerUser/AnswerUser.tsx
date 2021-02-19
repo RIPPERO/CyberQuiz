@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import store from '../../AppStore/store';
 import Header from '../Header/Header';
 import NotUsernameSet from '../NotUsernameSet/NotUsernameSet';
 import "./AnswerUser.scss";
 
 function AnswerUser(props) {
+    const history = useHistory();
     const [answer_user, setAnswerUser] = useState<any[]>([]);
 
     useEffect(() => {
@@ -32,6 +34,10 @@ function AnswerUser(props) {
             });
     }, [props]);
 
+    function goToQuizUser() {
+        history.push('/quiz-user');
+    }
+
     if (props.usernameSet) {
         return (
             <div className="quiz-user-container">
@@ -52,16 +58,20 @@ function AnswerUser(props) {
                     {answer_user.map((answer_user) => {
                         return (
                             <div className="quizContainer" key={answer_user.answer_user_ID}>
-                                <div className="quizContainerRow">
+                                <div className="answerContainerRow">
                                     <p className="font--small"> {answer_user.question} </p>
                                 </div>
 
-                                <div className="quizContainerRow">
+                                <div className="answerContainerRow">
                                     <p className="font--small"> {answer_user.answer} </p>
                                 </div>
                             </div>
                         )
                     })}
+                </div>
+
+                <div className="button-redirect">
+                    <button className="button--main" onClick={() => goToQuizUser()}>Go back</button>
                 </div>
             </div>
         );

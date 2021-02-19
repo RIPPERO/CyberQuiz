@@ -167,6 +167,9 @@ const addQuiz_User = (body) => {
         console.log(err);
         resolve(err);
       }
+      else {
+        resolve("Success!");
+      }
     });
   });
 }

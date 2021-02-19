@@ -132,6 +132,16 @@ class Questions extends Component<security> {
                 let answer = parseInt(this.state.isCorrectAnswer, 10);
 
                 if (this.state.questionArray.length === this.props.questionNumber + 1) {
+                    const API3 = `${this.props.apiUrl}quiz-user/add`;
+
+                    //Zabezpieczenie aby nie wchodził w tego if'a ponownie
+                    store.dispatch({
+                        type: "INCREASE_QUESTION_NUMBER",
+                        payload: {
+                            questionNumber: this.props.questionNumber + 1,
+                        }
+                    })
+                    
                     if (answer === 1) {
                         store.dispatch({
                             type: "UPDATE_SCORE",
@@ -140,22 +150,29 @@ class Questions extends Component<security> {
                             },
                         })
 
+                        const quiz_user_json = { score: this.props.score, quiz_ID: this.props.quiz_ID, user_ID_ID: this.props.user_ID };
+                        fetch(API3, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ quiz_user_json }),
+                        })
+
                         this.setRedirectToQuizUser();
                     }
                     else {
+                        const quiz_user_json = { score: this.props.score, quiz_ID: this.props.quiz_ID, user_ID_ID: this.props.user_ID };
+                        fetch(API3, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ quiz_user_json }),
+                        })
+
                         this.setRedirectToQuizUser();
                     }
-
-                    const API3 = `${this.props.apiUrl}quiz-user/add`;
-                    const quiz_user_json = { score: this.props.score, quiz_ID: this.props.quiz_ID, user_ID_ID: this.props.user_ID };
-
-                    fetch(API3, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ quiz_user_json }),
-                    })
                 }
                 else {
                     if (answer === 1) {

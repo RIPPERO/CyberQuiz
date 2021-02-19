@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import store from '../../../AppStore/store';
 import Header from '../../Header/Header';
-// import NotUsernameSet from '../../NotUsernameSet/NotUsernameSet';
+import NotUsernameSet from '../../NotUsernameSet/NotUsernameSet';
 import "../Leaderboard.scss";
 
 function LeaderboardID(props) {
+    const history = useHistory();
     const [leaderboard, setLeaderboard] = useState<any[]>([]);
+
     useEffect(() => {
         store.dispatch({
             type: "SET_HEADER",
@@ -29,46 +32,62 @@ function LeaderboardID(props) {
             .then(data => {
                 setLeaderboard(data);
             })
-
     }, [props]);
 
-    // if (props.usernameSet) {
-    return (
-        <div className="leaderboard-container">
-            <Header />
-            <div className="scroll">
-                <div className="titleContainer">
-                    <div className="titleContainer--item">
-                        <p className="font--medium--bold">Score</p>
-                    </div>
+    function goToLeaderboard() {
+        history.push('/leaderboard');
+    }
 
-                    <div className="titleContainer--item">
-                        <p className="font--medium--bold">Username</p>
-                    </div>
+    if (props.usernameSet) {
+        return (
+            <div className="leaderboard-container">
+                <Header />
+                <div className="scroll">
+                    {leaderboard.length > 0 &&
+                        <div>
+                            <div className="titleContainer">
+                                <div className="titleContainer--item">
+                                    <p className="font--medium--bold">Score</p>
+                                </div>
+
+                                <div className="titleContainer--item">
+                                    <p className="font--medium--bold">Username</p>
+                                </div>
+                            </div>
+                            <hr className="hr--main" />
+                        </div>
+                    }
+
+                    {leaderboard.length > 0 && leaderboard.map((leaderboard, index) => {
+                        return (
+                            <div className="quizContainer" key={index}>
+                                <div className="quizContainerRow">
+                                    <p className="font--small"> {leaderboard.final_score} </p>
+                                </div>
+                                <div className="quizContainerRow">
+                                    <p className="font--small"> {leaderboard.username} </p>
+                                </div>
+                            </div>
+                        )
+                    })}
+
+                    {leaderboard.length === 0 &&
+                        <div className="titleContainer">
+                            <p className="font--medium--bold">No one played this quiz yet!</p>
+                        </div>
+                    }
                 </div>
 
-                <hr className="hr--main" />
-
-                {leaderboard.map((leaderboard, index) => {
-                    return (
-                        <div className="quizContainer" key={index}>
-                            <div className="quizContainerRow">
-                                <p className="font--small"> {leaderboard.final_score} </p>
-                            </div>
-                            <div className="quizContainerRow">
-                                <p className="font--small"> {leaderboard.username} </p>
-                            </div>
-                        </div>
-                    )
-                })}
+                <div className="button-redirect">
+                    <button className="button--main" onClick={() => goToLeaderboard()}>Go back</button>
+                </div>
             </div>
-        </div>
+        )
+    }
+    return (
+        <NotUsernameSet />
     )
 }
-//     return (
-//         <NotUsernameSet />
-//     )
-// }
 
 const mapStateToProps = (state) => {
     return {
