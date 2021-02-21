@@ -42,16 +42,20 @@ function LeaderboardID(props) {
         return (
             <div className="leaderboard-container">
                 <Header />
-                <div className="scroll" style={{margin: "auto"}}>
+                <div className="scroll" style={{ margin: "auto" }}>
                     {leaderboard.length > 0 &&
                         <div>
                             <div className="titleContainer">
                                 <div className="titleContainer--item">
-                                    <p className="font--medium--bold">Score</p>
+                                    <p className="font--medium--bold">Position</p>
                                 </div>
 
                                 <div className="titleContainer--item">
                                     <p className="font--medium--bold">Username</p>
+                                </div>
+
+                                <div className="titleContainer--item">
+                                    <p className="font--medium--bold">Score</p>
                                 </div>
                             </div>
                             <hr className="hr--main" />
@@ -62,10 +66,13 @@ function LeaderboardID(props) {
                         return (
                             <div className="quizContainer" key={index}>
                                 <div className="quizContainerRow">
-                                    <p className="font--small"> {leaderboard.final_score} </p>
+                                    <p className="font--small"> {index + 1} </p>
                                 </div>
                                 <div className="quizContainerRow">
                                     <p className="font--small"> {leaderboard.username} </p>
+                                </div>
+                                <div className="quizContainerRow">
+                                    <p className="font--small"> {leaderboard.final_score} </p>
                                 </div>
                             </div>
                         )

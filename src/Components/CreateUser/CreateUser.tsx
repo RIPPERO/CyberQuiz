@@ -122,7 +122,7 @@ function CreateUser(props) {
             <Header />
 
             <div className="inputContainer">
-                <input className="input--main upper" type="text" name="username" placeholder="username" onChange={handleChange} />
+                <input className="input--main upper" type="text" name="username" placeholder="username" onChange={handleChange} maxLength={10}/>
                 <button className="button--main" onClick={createUser}>Start!</button>
             </div>
         </div>

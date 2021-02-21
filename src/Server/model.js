@@ -138,7 +138,7 @@ const checkAnswer = (body) => {
 // Tabela quiz_user
 const showQuiz_User = (body) => {
   return new Promise(function (resolve) {
-    var sql = "SELECT * FROM quiz_user WHERE user_ID_ID = ?";
+    var sql = "SELECT quiz_user.*, quiz.name FROM quiz_user inner join quiz on quiz.quiz_ID = quiz_user.quiz_ID_ID WHERE user_ID_ID = ? ORDER BY date DESC";
     values = body.user_ID;
 
     connection.query(sql, values, function (err, results) {

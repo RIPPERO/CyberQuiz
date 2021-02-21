@@ -61,7 +61,7 @@ function QuizUser(props) {
                 <div className="scroll" style={{margin: "auto"}}>
                     <div className="titleContainer">
                         <div className="titleContainer--item">
-                            <p className="font--medium--bold">Quiz number</p>
+                            <p className="font--medium--bold">Quiz name</p>
                         </div>
 
                         <div className="titleContainer--item">
@@ -79,7 +79,7 @@ function QuizUser(props) {
                         return (
                             <div className="quizContainer" onClick={() => chooseQuizUser(quiz_user.user_ID_ID, quiz_user.quiz_ID_ID, quiz_user.quiz_user_ID)} key={quiz_user.quiz_user_ID}>
                                 <div className="quizContainerRow">
-                                    <p className="font--small"> {quiz_user.quiz_ID_ID} </p>
+                                    <p className="font--small"> {quiz_user.name} </p>
                                 </div>
 
                                 <div className="quizContainerRow">
