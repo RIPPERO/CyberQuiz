@@ -54,6 +54,10 @@ function QuizUser(props) {
         history.push('/leaderboard');
     }
 
+    function showCharts() {
+        history.push('/chart');
+    }
+
     if (props.usernameSet) {
         return (
             <div className="quiz-user-container">
@@ -96,6 +100,7 @@ function QuizUser(props) {
                 
                 <div className="button-redirect">
                     <button className="button--main" onClick={() => goToLeaderboard()}>Show Leaderboard</button>
+                    <button className="button--main" style={{marginLeft: "15px"}} onClick={() => showCharts()}>Show Charts</button>
                 </div>
             </div>
         );

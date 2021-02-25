@@ -106,6 +106,16 @@ app.get('/quiz-user/ai', (req, res) => {
   })
 });
 
+app.post('/quiz-user/chart', (req, res) => {
+  model.getChart(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
 // Tabela answer_user
 app.post('/answer-user', (req, res) => {
   model.showAnswer_User(req.body)

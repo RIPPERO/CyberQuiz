@@ -1,0 +1,17 @@
+@import "../../../Styles/variables.scss";
+
+.chartID-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: $main-blue-dark;
+}
+
+.chartIDDiv {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -190,6 +190,24 @@ const getAIQuiz_User = () => {
   });
 }
 
+const getChart = (body) => {
+  return new Promise(function (resolve) {
+    var value = body.chartJson.quiz_ID_ID;
+    var value1 = body.chartJson.user_ID_ID;
+    var sql = "SELECT * FROM quiz_user WHERE quiz_ID_ID = " + value + " AND user_ID_ID = " + value1;
+
+    connection.query(sql, function (err, results) {
+      if (err) {
+        console.log(err.code + "\n" + err.sqlMessage);
+        resolve(err);
+      }
+      else {
+        resolve(results);
+      }
+    });
+  });
+}
+
 // Tabela answer_user
 const showAnswer_User = (body) => {
   return new Promise(function (resolve) {
@@ -278,6 +296,7 @@ module.exports = {
   showQuiz_User,
   addQuiz_User,
   getAIQuiz_User,
+  getChart,
   showAnswer_User,
   addAnswer_User,
   deleteAnswer_User,
