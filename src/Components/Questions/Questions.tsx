@@ -141,7 +141,7 @@ class Questions extends Component<security> {
                             questionNumber: this.props.questionNumber + 1,
                         }
                     })
-                    
+
                     if (answer === 1) {
                         store.dispatch({
                             type: "UPDATE_SCORE",
@@ -240,6 +240,35 @@ class Questions extends Component<security> {
         }
     }
 
+    startFromBeginning = () => {
+        const API5 = `${this.props.apiUrl}answer-user/delete`;
+        const delete_answer_user = { quiz_user_ID_ID: this.state.quiz_userAI };
+
+        fetch(API5, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ delete_answer_user }),
+        })
+
+        store.dispatch({
+            type: "UPDATE_SCORE",
+            payload: {
+                score: 0,
+            },
+        })
+
+        store.dispatch({
+            type: "INCREASE_QUESTION_NUMBER",
+            payload: {
+                questionNumber: 0,
+            }
+        })
+
+        this.componentDidMount();
+    }
+
     render() {
         if (this.props.usernameSet) {
             return (
@@ -264,6 +293,12 @@ class Questions extends Component<security> {
                             })}
                         </div>
                     </div>
+
+                    {this.props.questionNumber > 0 &&
+                        <div className="button-redirect">
+                            <button className="button--main" onClick={() => this.startFromBeginning()}>Start from beginning</button>
+                        </div>
+                    }
                 </div>
             )
         }

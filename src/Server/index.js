@@ -127,6 +127,16 @@ app.post('/answer-user/add', (req, res) => {
   })
 });
 
+app.post('/answer-user/delete', (req, res) => {
+  model.deleteAnswer_User(req.body)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+});
+
 // Leaderboard
 app.post('/leaderboard', (req, res) => {
   model.getLeaderboard(req.body)

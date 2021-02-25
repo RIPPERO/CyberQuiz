@@ -233,6 +233,23 @@ const addAnswer_User = (body) => {
   });
 }
 
+const deleteAnswer_User = (body) => {
+  return new Promise(function (resolve) {    
+    var sql = "DELETE FROM answer_user WHERE quiz_user_ID_ID = ?";
+    var value = body.delete_answer_user.quiz_user_ID_ID;
+
+    connection.query(sql, value, function (err) {
+      if (err) {
+        console.log(err);
+        resolve(err);
+      }
+      else {
+        resolve("Success!");
+      }
+    });
+  });
+}
+
 // Leaderboard
 const getLeaderboard = (body) => {
   return new Promise(function (resolve) {
@@ -263,5 +280,6 @@ module.exports = {
   getAIQuiz_User,
   showAnswer_User,
   addAnswer_User,
+  deleteAnswer_User,
   getLeaderboard,
 }
