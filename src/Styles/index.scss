@@ -48,7 +48,7 @@
 .button--main {
     @include font-main($font-small, $main-white, ($padding-small $padding-medium), 500);
     border: none;
-    background: linear-gradient(45deg, $main-blue-dark-2, $main-blue-light);
+    background: linear-gradient(45deg, $main-blue-dark, $main-blue-light);
     border-radius: 25px;
     outline: none;
     transition: 0.2s;

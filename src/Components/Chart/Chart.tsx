@@ -13,7 +13,7 @@ function Chart(props) {
         store.dispatch({
             type: "SET_HEADER",
             payload: {
-                headerText: "Select a quiz to show chart!",
+                headerText: "Select a quiz to see the chart!",
             },
         })
 
@@ -37,6 +37,10 @@ function Chart(props) {
         history.push(`/chart/${quiz_ID}`);
     }
 
+    function goToQuizUser() {
+        history.push('/quiz-user');
+    }
+
     return (
         <div className="chart-container">
             <Header />
@@ -52,6 +56,10 @@ function Chart(props) {
                     )
                 })}
 
+
+            </div>
+            <div className="button-redirect">
+                <button className="button--main" onClick={() => goToQuizUser()}>Go back</button>
             </div>
         </div>
     )
