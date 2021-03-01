@@ -8,7 +8,14 @@ export default function configureStore() {
     const middleware = [thunk];
     let store;
 
-    if (window.navigator.userAgent.includes("Chrome")) {
+    if (window.navigator.userAgent.indexOf("Opera") !== -1 || window.navigator.userAgent.indexOf('OPR') !== -1) {
+        store = createStore(
+            rootReducer,
+            initialState,
+            compose(applyMiddleware(...middleware))
+        );
+    }
+    else if (window.navigator.userAgent.includes("Chrome")) {
         store = createStore(
             rootReducer,
             initialState,
