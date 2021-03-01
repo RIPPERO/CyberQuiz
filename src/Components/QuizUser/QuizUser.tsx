@@ -58,6 +58,24 @@ function QuizUser(props) {
         history.push('/chart');
     }
 
+    function anotherQuiz() {
+        store.dispatch({
+            type: "UPDATE_SCORE",
+            payload: {
+                score: 0,
+            },
+        })
+
+        store.dispatch({
+            type: "INCREASE_QUESTION_NUMBER",
+            payload: {
+                questionNumber: 0,
+            }
+        })
+
+        history.push('/quiz');
+    }
+
     if (props.usernameSet) {
         return (
             <div className="quiz-user-container">
@@ -101,6 +119,7 @@ function QuizUser(props) {
                 <div className="button-redirect">
                     <button className="button--main" onClick={() => goToLeaderboard()}>Show Leaderboard</button>
                     <button className="button--main" style={{marginLeft: "15px"}} onClick={() => showCharts()}>Show Charts</button>
+                    <button className="button--main" style={{marginLeft: "15px"}} onClick={() => anotherQuiz()}>Play another quiz</button>
                 </div>
             </div>
         );

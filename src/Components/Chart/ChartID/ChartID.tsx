@@ -6,7 +6,7 @@ import Header from '../../Header/Header';
 import "./ChartID.scss";
 
 //Chart
-import { VictoryChart, VictoryAxis, VictoryLine, VictoryTheme } from 'victory';
+import { VictoryChart, VictoryAxis, VictoryLine } from 'victory';
 
 function Chart(props) {
     const history = useHistory();
