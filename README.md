@@ -16,6 +16,6 @@ cd src/Server
 node index.js
 
 Database:
-Make sure your MysSQL database is running
+Make sure your MySQL database is running, .env.example is renamed to .env and it is configured properly.
 ```
 ### 4. You should see your browser opened automatically.
