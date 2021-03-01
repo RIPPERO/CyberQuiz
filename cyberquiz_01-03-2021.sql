@@ -71,79 +71,53 @@ CREATE TABLE IF NOT EXISTS `answer_user` (
   KEY `FK__question` (`question_ID_ID`),
   KEY `FK__answer` (`answer_ID_ID`),
   KEY `FK_answer_user_quiz_user` (`quiz_user_ID_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli cyberquiz.answer_user: 7 rows
+-- Zrzucanie danych dla tabeli cyberquiz.answer_user: 18 rows
 /*!40000 ALTER TABLE `answer_user` DISABLE KEYS */;
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(1, 2, 1, 1, 1, 1);
+	(2, 1, 1, 1, 1, 1);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(2, 2, 1, 2, 7, 1);
+	(3, 1, 1, 2, 4, 1);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(3, 2, 1, 3, 9, 1);
+	(4, 1, 1, 3, 9, 1);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(4, 1, 1, 1, 1, 2);
+	(5, 1, 1, 1, 1, 2);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(5, 1, 1, 2, 4, 2);
+	(6, 1, 1, 2, 4, 2);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(6, 1, 1, 3, 8, 2);
+	(7, 1, 1, 3, 8, 2);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(7, 1, 3, 5, 12, 3);
+	(8, 1, 1, 1, 1, 3);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(8, 1, 1, 1, 1, 4);
+	(9, 1, 1, 2, 4, 3);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(9, 1, 1, 2, 4, 4);
+	(10, 1, 1, 3, 9, 3);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(10, 1, 1, 3, 9, 4);
+	(11, 1, 1, 1, 1, 4);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(11, 1, 1, 1, 3, 5);
+	(12, 1, 1, 2, 4, 4);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(12, 1, 1, 2, 4, 5);
+	(13, 1, 1, 3, 8, 4);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(13, 1, 1, 3, 9, 5);
+	(14, 1, 2, 4, 10, 5);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(14, 1, 1, 1, 1, 6);
+	(15, 1, 2, 4, 10, 6);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(15, 1, 1, 2, 4, 6);
+	(16, 1, 1, 1, 1, 7);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(16, 1, 1, 2, 4, 6);
+	(17, 1, 1, 2, 4, 7);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(17, 1, 1, 1, 1, 6);
+	(18, 1, 1, 3, 8, 7);
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(18, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(19, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(20, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(21, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(22, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(23, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(24, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(25, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(26, 1, 1, 1, 1, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(27, 1, 1, 2, 4, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(28, 1, 1, 3, 8, 6);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(48, 1, 1, 3, 9, 8);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(47, 1, 1, 2, 4, 8);
-INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
-	(46, 1, 1, 1, 1, 8);
+	(19, 1, 2, 4, 11, 8);
 /*!40000 ALTER TABLE `answer_user` ENABLE KEYS */;
 
 -- Zrzut struktury tabela cyberquiz.question
 CREATE TABLE IF NOT EXISTS `question` (
   `question_ID` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(80) NOT NULL DEFAULT '',
-  `type` int(11) NOT NULL DEFAULT '0' COMMENT '1 - jednokrotnego, 2 - wielokrotnego, 3 - prawda/fałsz',
+  `type` enum('1','2') NOT NULL DEFAULT '1' COMMENT '1 - jednokrotnego, 2 - wielokrotnego',
   `quiz_ID_ID` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`question_ID`,`quiz_ID_ID`) USING BTREE,
   KEY `FK_question_quiz` (`quiz_ID_ID`)
@@ -152,15 +126,15 @@ CREATE TABLE IF NOT EXISTS `question` (
 -- Zrzucanie danych dla tabeli cyberquiz.question: 5 rows
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
-	(1, 'What does the https at the beginning of a URL mean?', 1, 1);
+	(1, 'What does the https at the beginning of a URL mean?', '1', 1);
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
-	(2, 'What can you do to prevent unauthorised access to your accounts/files?', 2, 1);
+	(2, 'What can you do to prevent unauthorised access to your accounts/files?', '2', 1);
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
-	(3, 'Does backing up files help us to protect our data?', 3, 1);
+	(3, 'Does backing up files help us to protect our data?', '1', 1);
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
-	(4, 'Test', 1, 2);
+	(4, 'Test', '1', 2);
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
-	(5, 'Test', 1, 3);
+	(5, 'Test', '1', 3);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 
 -- Zrzut struktury tabela cyberquiz.quiz
@@ -194,24 +168,24 @@ CREATE TABLE IF NOT EXISTS `quiz_user` (
   KEY `FK__user` (`user_ID_ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli cyberquiz.quiz_user: 3 rows
+-- Zrzucanie danych dla tabeli cyberquiz.quiz_user: 8 rows
 /*!40000 ALTER TABLE `quiz_user` DISABLE KEYS */;
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(1, 3, '2021-02-19 12:26:54', 1, 2);
+	(1, 3, '2021-02-26 12:07:21', 1, 1);
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(2, 2, '2021-02-19 13:07:19', 1, 1);
+	(2, 2, '2021-02-27 13:37:17', 1, 1);
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(3, 1, '2021-02-22 22:48:27', 3, 1);
+	(3, 3, '2021-02-28 13:39:55', 1, 1);
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(4, 3, '2021-02-25 13:13:01', 1, 1);
+	(4, 2, '2021-03-01 13:39:59', 1, 1);
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(5, 2, '2021-02-25 13:16:18', 1, 1);
+	(5, 1, '2021-02-27 13:40:52', 2, 1);
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(6, 2, '2021-02-25 16:10:27', 1, 1);
+	(6, 1, '2021-02-28 13:41:22', 2, 1);
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(7, 3, '2021-02-25 16:14:37', 1, 1);
+	(7, 2, '2021-03-01 13:41:46', 1, 1);
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
-	(8, 3, '2021-02-25 16:29:15', 1, 1);
+	(8, 0, '2021-03-01 13:41:52', 2, 1);
 /*!40000 ALTER TABLE `quiz_user` ENABLE KEYS */;
 
 -- Zrzut struktury tabela cyberquiz.user
