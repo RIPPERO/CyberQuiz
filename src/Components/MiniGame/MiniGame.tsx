@@ -167,9 +167,7 @@ class MiniGame extends Component<security> {
             <NotUsernameSet />
         )
     }
-
 }
-
 
 const mapStateToProps = (state) => {
     return {
@@ -177,6 +175,7 @@ const mapStateToProps = (state) => {
         usernameSet: state.user.usernameSet,
         score: state.question.score,
         user_ID: state.user.user_ID,
+        quiz_ID: state.quiz.quiz_ID,
     }
 }
 

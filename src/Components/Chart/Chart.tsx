@@ -73,7 +73,6 @@ const mapStateToProps = (state) => {
     return {
         apiUrl: state.api.apiUrl,
         usernameSet: state.user.usernameSet,
-        quiz_ID: state.quiz.quiz_ID,
     }
 }
 
