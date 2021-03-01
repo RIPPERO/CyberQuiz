@@ -14,8 +14,7 @@ export default function configureStore() {
             initialState,
             compose(applyMiddleware(...middleware))
         );
-    }
-    else if (window.navigator.userAgent.includes("Chrome")) {
+    } else if (window.navigator.userAgent.includes("Chrome")) {
         store = createStore(
             rootReducer,
             initialState,
@@ -31,5 +30,6 @@ export default function configureStore() {
             compose(applyMiddleware(...middleware))
         );
     }
+    
     return store;
 }
