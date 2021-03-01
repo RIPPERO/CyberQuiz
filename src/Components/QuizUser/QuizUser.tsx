@@ -118,8 +118,8 @@ function QuizUser(props) {
                 
                 <div className="button-redirect">
                     <button className="button--main" onClick={() => goToLeaderboard()}>Show Leaderboard</button>
+                    <button className="button--main--red" style={{marginLeft: "15px"}} onClick={() => anotherQuiz()}>Play another quiz</button>
                     <button className="button--main" style={{marginLeft: "15px"}} onClick={() => showCharts()}>Show Charts</button>
-                    <button className="button--main" style={{marginLeft: "15px"}} onClick={() => anotherQuiz()}>Play another quiz</button>
                 </div>
             </div>
         );
