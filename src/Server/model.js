@@ -195,7 +195,7 @@ const getChart = (body) => {
   return new Promise(function (resolve) {
     var value = body.chartJson.quiz_ID_ID;
     var value1 = body.chartJson.user_ID_ID;
-    var sql = "SELECT date AS 'day_date', ROUND(AVG(final_score), 2) AS 'avg_score' FROM quiz_user WHERE quiz_ID_ID = " + value + " AND user_ID_ID = " + value1 + " GROUP BY CAST(date AS DATE)";
+    var sql = "SELECT date AS 'day_date', ROUND(AVG(final_score), 2) AS 'avg_score' FROM cyberquiz.quiz_user WHERE quiz_ID_ID = " + value + " AND user_ID_ID = " + value1 + " GROUP BY CAST(date AS DATE);";
 
     connection.query(sql, function (err, results) {
       if (err) {
