@@ -88,9 +88,9 @@ CREATE TABLE IF NOT EXISTS `answer_user` (
   KEY `FK__question` (`question_ID_ID`),
   KEY `FK__answer` (`answer_ID_ID`),
   KEY `FK_answer_user_quiz_user` (`quiz_user_ID_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli cyberquiz.answer_user: 26 rows
+-- Zrzucanie danych dla tabeli cyberquiz.answer_user: 29 rows
 /*!40000 ALTER TABLE `answer_user` DISABLE KEYS */;
 INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `question_ID_ID`, `answer_ID_ID`, `quiz_user_ID_ID`) VALUES
 	(1, 1, 1, 1, 1, 1),
@@ -118,7 +118,10 @@ INSERT INTO `answer_user` (`answer_user_ID`, `user_ID_ID`, `quiz_ID_ID`, `questi
 	(23, 2, 1, 3, 8, 6),
 	(24, 2, 1, 1, 1, 7),
 	(25, 2, 1, 2, 4, 7),
-	(26, 2, 1, 3, 9, 7);
+	(26, 2, 1, 3, 9, 7),
+	(27, 1, 1, 1, 1, 8),
+	(28, 1, 1, 2, 4, 8),
+	(29, 1, 1, 3, 9, 8);
 /*!40000 ALTER TABLE `answer_user` ENABLE KEYS */;
 
 -- Zrzut struktury tabela cyberquiz.question
@@ -136,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `question` (
 INSERT INTO `question` (`question_ID`, `question`, `type`, `quiz_ID_ID`) VALUES
 	(1, 'What does the HTTPS at the beginning of a URL mean?', '1', 1),
 	(2, 'What can you do to prevent unauthorized access to your accounts/files?', '2', 1),
-	(3, 'Does backing up files help us to protect our data?', '1', 1),
+	(3, 'Does file backup protect our data', '1', 1),
 	(4, 'How many characters of a password is the most secure?', '1', 2),
 	(5, 'Should a password contain special characters?', '1', 2),
 	(6, 'Is it safe to use the same password on several websites?', '1', 2),
@@ -177,9 +180,9 @@ CREATE TABLE IF NOT EXISTS `quiz_user` (
   PRIMARY KEY (`quiz_user_ID`),
   KEY `FK__quiz` (`quiz_ID_ID`),
   KEY `FK__user` (`user_ID_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Zrzucanie danych dla tabeli cyberquiz.quiz_user: 7 rows
+-- Zrzucanie danych dla tabeli cyberquiz.quiz_user: 8 rows
 /*!40000 ALTER TABLE `quiz_user` DISABLE KEYS */;
 INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `user_ID_ID`) VALUES
 	(1, 2, '2021-06-25 11:02:00', 1, 1),
@@ -188,7 +191,8 @@ INSERT INTO `quiz_user` (`quiz_user_ID`, `final_score`, `date`, `quiz_ID_ID`, `u
 	(4, 1, '2021-06-24 11:03:23', 1, 1),
 	(5, 3, '2021-06-23 11:04:59', 1, 2),
 	(6, 2, '2021-06-24 11:05:17', 1, 2),
-	(7, 3, '2021-06-25 11:05:20', 1, 2);
+	(7, 3, '2021-06-25 11:05:20', 1, 2),
+	(8, 3, '2021-06-25 11:16:52', 1, 1);
 /*!40000 ALTER TABLE `quiz_user` ENABLE KEYS */;
 
 -- Zrzut struktury tabela cyberquiz.user
